@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meshtastic LLC
+ * Copyright (c) 2025-2026 Meshtastic LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package org.meshtastic.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
@@ -55,6 +54,42 @@ val surfaceContainerLight = Color(0xFFEBEFE7)
 val surfaceContainerHighLight = Color(0xFFE5EAE2)
 val surfaceContainerHighestLight = Color(0xFFDFE4DC)
 
+// Cyberpunk Palette
+val primaryLight = Color(0xFF00FFF7) // Neon Cyan
+val onPrimaryLight = Color(0xFF0A001F) // Deep Purple
+val primaryContainerLight = Color(0xFF8F00FF) // Neon Purple
+val onPrimaryContainerLight = Color(0xFFFF00C8) // Neon Pink
+val secondaryLight = Color(0xFFFF00C8) // Neon Pink
+val onSecondaryLight = Color(0xFF0A001F) // Deep Purple
+val secondaryContainerLight = Color(0xFF1F002A) // Dark Purple
+val onSecondaryContainerLight = Color(0xFF00FFF7) // Neon Cyan
+val tertiaryLight = Color(0xFFFFF700) // Neon Yellow
+val onTertiaryLight = Color(0xFF0A001F) // Deep Purple
+val tertiaryContainerLight = Color(0xFF1F002A) // Dark Purple
+val onTertiaryContainerLight = Color(0xFFFF00C8) // Neon Pink
+val errorLight = Color(0xFFFF1744) // Neon Red
+val onErrorLight = Color(0xFF0A001F) // Deep Purple
+val errorContainerLight = Color(0xFF1F002A) // Dark Purple
+val onErrorContainerLight = Color(0xFFFFF700) // Neon Yellow
+val backgroundLight = Color(0xFF0A001F) // Deep Purple (background)
+val onBackgroundLight = Color(0xFF00FFF7) // Neon Cyan
+val surfaceLight = Color(0xFF1F002A) // Dark Purple
+val onSurfaceLight = Color(0xFFFF00C8) // Neon Pink
+val surfaceVariantLight = Color(0xFF8F00FF) // Neon Purple
+val onSurfaceVariantLight = Color(0xFFFFF700) // Neon Yellow
+val outlineLight = Color(0xFF00FFF7) // Neon Cyan
+val outlineVariantLight = Color(0xFFFF00C8) // Neon Pink
+val scrimLight = Color(0xFF000000) // Black
+val inverseSurfaceLight = Color(0xFF8F00FF) // Neon Purple
+val inverseOnSurfaceLight = Color(0xFFFFF700) // Neon Yellow
+val inversePrimaryLight = Color(0xFFFF00C8) // Neon Pink
+val surfaceDimLight = Color(0xFF0A001F) // Deep Purple
+val surfaceBrightLight = Color(0xFF00FFF7) // Neon Cyan
+val surfaceContainerLowestLight = Color(0xFF000000) // Black
+val surfaceContainerLowLight = Color(0xFF1F002A) // Dark Purple
+val surfaceContainerLight = Color(0xFF8F00FF) // Neon Purple
+val surfaceContainerHighLight = Color(0xFFFF00C8) // Neon Pink
+val surfaceContainerHighestLight = Color(0xFFFFF700) // Neon Yellow
 val primaryLightMediumContrast = Color(0xFF0F4D29)
 val onPrimaryLightMediumContrast = Color(0xFFFFFFFF)
 val primaryContainerLightMediumContrast = Color(0xFF478157)
@@ -166,7 +201,43 @@ val surfaceContainerHighestDark = Color(0xFF313631)
 val primaryDarkMediumContrast = Color(0xFF9BD9A9)
 val onPrimaryDarkMediumContrast = Color(0xFF001B09)
 val primaryContainerDarkMediumContrast = Color(0xFF639D72)
-val onPrimaryContainerDarkMediumContrast = Color(0xFF000000)
+
+// Cyberpunk Palette (Dark)
+val primaryDark = Color(0xFF00FFF7) // Neon Cyan
+val onPrimaryDark = Color(0xFF0A001F) // Deep Purple
+val primaryContainerDark = Color(0xFF8F00FF) // Neon Purple
+val onPrimaryContainerDark = Color(0xFFFF00C8) // Neon Pink
+val secondaryDark = Color(0xFFFF00C8) // Neon Pink
+val onSecondaryDark = Color(0xFF0A001F) // Deep Purple
+val secondaryContainerDark = Color(0xFF1F002A) // Dark Purple
+val onSecondaryContainerDark = Color(0xFF00FFF7) // Neon Cyan
+val tertiaryDark = Color(0xFFFFF700) // Neon Yellow
+val onTertiaryDark = Color(0xFF0A001F) // Deep Purple
+val tertiaryContainerDark = Color(0xFF1F002A) // Dark Purple
+val onTertiaryContainerDark = Color(0xFFFF00C8) // Neon Pink
+val errorDark = Color(0xFFFF1744) // Neon Red
+val onErrorDark = Color(0xFF0A001F) // Deep Purple
+val errorContainerDark = Color(0xFF1F002A) // Dark Purple
+val onErrorContainerDark = Color(0xFFFFF700) // Neon Yellow
+val backgroundDark = Color(0xFF0A001F) // Deep Purple (background)
+val onBackgroundDark = Color(0xFF00FFF7) // Neon Cyan
+val surfaceDark = Color(0xFF1F002A) // Dark Purple
+val onSurfaceDark = Color(0xFFFF00C8) // Neon Pink
+val surfaceVariantDark = Color(0xFF8F00FF) // Neon Purple
+val onSurfaceVariantDark = Color(0xFFFFF700) // Neon Yellow
+val outlineDark = Color(0xFF00FFF7) // Neon Cyan
+val outlineVariantDark = Color(0xFFFF00C8) // Neon Pink
+val scrimDark = Color(0xFF000000) // Black
+val inverseSurfaceDark = Color(0xFF8F00FF) // Neon Purple
+val inverseOnSurfaceDark = Color(0xFFFFF700) // Neon Yellow
+val inversePrimaryDark = Color(0xFFFF00C8) // Neon Pink
+val surfaceDimDark = Color(0xFF0A001F) // Deep Purple
+val surfaceBrightDark = Color(0xFF00FFF7) // Neon Cyan
+val surfaceContainerLowestDark = Color(0xFF000000) // Black
+val surfaceContainerLowDark = Color(0xFF1F002A) // Dark Purple
+val surfaceContainerDark = Color(0xFF8F00FF) // Neon Purple
+val surfaceContainerHighDark = Color(0xFFFF00C8) // Neon Pink
+val surfaceContainerHighestDark = Color(0xFFFFF700) // Neon Yellow
 val secondaryDarkMediumContrast = Color(0xFFBBD0BC)
 val onSecondaryDarkMediumContrast = Color(0xFF081A0D)
 val secondaryContainerDarkMediumContrast = Color(0xFF819683)
