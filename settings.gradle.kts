@@ -37,6 +37,7 @@ include(
     ":feature:node",
     ":feature:settings",
     ":feature:firmware",
+    ":feature:emergency",
     ":mesh_service_example",
 )
 rootProject.name = "MeshtasticAndroid"

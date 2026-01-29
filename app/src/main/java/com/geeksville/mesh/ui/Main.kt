@@ -91,6 +91,7 @@ import com.geeksville.mesh.model.UIViewModel
 import com.geeksville.mesh.navigation.channelsGraph
 import com.geeksville.mesh.navigation.connectionsGraph
 import com.geeksville.mesh.navigation.contactsGraph
+import com.geeksville.mesh.navigation.emergencyGraph
 import com.geeksville.mesh.navigation.firmwareGraph
 import com.geeksville.mesh.navigation.mapGraph
 import com.geeksville.mesh.navigation.nodesGraph
@@ -111,6 +112,7 @@ import org.meshtastic.core.model.DeviceVersion
 import org.meshtastic.core.model.toMessageRes
 import org.meshtastic.core.navigation.ConnectionsRoutes
 import org.meshtastic.core.navigation.ContactsRoutes
+import org.meshtastic.core.navigation.EmergencyRoutes
 import org.meshtastic.core.navigation.MapRoutes
 import org.meshtastic.core.navigation.NodeDetailRoutes
 import org.meshtastic.core.navigation.NodesRoutes
@@ -129,6 +131,7 @@ import org.meshtastic.core.strings.connections
 import org.meshtastic.core.strings.conversations
 import org.meshtastic.core.strings.device_sleeping
 import org.meshtastic.core.strings.disconnected
+import org.meshtastic.core.strings.emergency_help
 import org.meshtastic.core.strings.firmware_old
 import org.meshtastic.core.strings.firmware_too_old
 import org.meshtastic.core.strings.map
@@ -144,6 +147,7 @@ import org.meshtastic.core.ui.component.MultipleChoiceAlertDialog
 import org.meshtastic.core.ui.component.ScrollToTopEvent
 import org.meshtastic.core.ui.component.SimpleAlertDialog
 import org.meshtastic.core.ui.icon.Conversations
+import org.meshtastic.core.ui.icon.Emergency
 import org.meshtastic.core.ui.icon.Map
 import org.meshtastic.core.ui.icon.MeshtasticIcons
 import org.meshtastic.core.ui.icon.Nodes
@@ -159,6 +163,7 @@ enum class TopLevelDestination(val label: StringResource, val icon: ImageVector,
     Map(Res.string.map, MeshtasticIcons.Map, MapRoutes.Map()),
     Nodes(Res.string.nodes, MeshtasticIcons.Nodes, NodesRoutes.NodesGraph),
     Conversations(Res.string.conversations, MeshtasticIcons.Conversations, ContactsRoutes.ContactsGraph),
+    Emergency(Res.string.emergency_help, MeshtasticIcons.Emergency, EmergencyRoutes.EmergencyGraph),
     Settings(Res.string.bottom_nav_settings, MeshtasticIcons.Settings, SettingsRoutes.SettingsGraph()),
     Connections(Res.string.connections, Icons.Rounded.Wifi, ConnectionsRoutes.ConnectionsGraph),
     ;
@@ -582,6 +587,7 @@ fun MainScreen(uIViewModel: UIViewModel = hiltViewModel(), scanModel: BTScanMode
             connectionsGraph(navController)
             settingsGraph(navController)
             firmwareGraph(navController)
+            emergencyGraph(navController)
         }
     }
 }

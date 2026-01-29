@@ -159,3 +159,11 @@ object FirmwareRoutes {
 
     @Serializable data object FirmwareUpdate : Route
 }
+
+object EmergencyRoutes {
+    @Serializable data object EmergencyGraph : Graph
+
+    @Serializable data object EmergencyHome : Route
+
+    @Serializable data class EmergencyTopic(val section: String, val topicId: String) : Route
+}

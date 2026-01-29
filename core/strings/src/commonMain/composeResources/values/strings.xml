@@ -1143,4 +1143,29 @@
     <string name="add_channels_description">The following channels were found in the QR code. Select the once you would like to add to your device. Existing channels will be preserved.</string>
     <string name="replace_channels_and_settings_title">Replace Channels &amp; Settings</string>
     <string name="replace_channels_and_settings_description">This QR code contains a complete configuration. This will REPLACE your existing channels and radio settings. All existing channels will be removed.</string>
+
+    <!-- Emergency Help -->
+    <string name="emergency_help">Emergency</string>
+    <string name="emergency_first_aid">First Aid</string>
+    <string name="emergency_disaster_survival">Disaster Survival</string>
+    <string name="emergency_basic_survival">Basic Survival</string>
+    <string name="emergency_recognition">Recognition Signs</string>
+    <string name="emergency_does_this_match">Does this match what you see?</string>
+    <string name="emergency_steps">Step-by-Step Actions</string>
+    <string name="emergency_step_number">Step %1$d</string>
+    <string name="emergency_do">DO</string>
+    <string name="emergency_do_not">DO NOT</string>
+    <string name="emergency_danger_signs">Danger Signs</string>
+    <string name="emergency_escalation">When to Escalate</string>
+    <string name="emergency_before">Before</string>
+    <string name="emergency_during">During</string>
+    <string name="emergency_after">After</string>
+    <string name="emergency_disclaimer_title">Important Notice</string>
+    <string name="emergency_disclaimer_accept">I Understand</string>
+    <string name="emergency_source">Source</string>
+    <string name="emergency_loading_error">Failed to load emergency guide</string>
+    <string name="emergency_life_threatening">Life-Threatening</string>
+    <string name="emergency_serious_injury">Serious Injury</string>
+    <string name="emergency_hazard_type">Hazard Type</string>
+    <string name="emergency_purpose">Purpose</string>
 </resources>

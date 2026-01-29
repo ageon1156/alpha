@@ -44,6 +44,9 @@ internal const val KEY_ONLY_ONLINE = "only-online"
 internal const val KEY_ONLY_DIRECT = "only-direct"
 internal const val KEY_SHOW_IGNORED = "show-ignored"
 
+// Emergency help
+internal const val KEY_EMERGENCY_DISCLAIMER_ACCEPTED = "emergency_disclaimer_accepted"
+
 @Singleton
 class UiPreferencesDataSource @Inject constructor(private val dataStore: DataStore<Preferences>) {
 
@@ -63,6 +66,9 @@ class UiPreferencesDataSource @Inject constructor(private val dataStore: DataSto
     val onlyOnline: StateFlow<Boolean> = dataStore.prefStateFlow(key = ONLY_ONLINE, default = false)
     val onlyDirect: StateFlow<Boolean> = dataStore.prefStateFlow(key = ONLY_DIRECT, default = false)
     val showIgnored: StateFlow<Boolean> = dataStore.prefStateFlow(key = SHOW_IGNORED, default = false)
+
+    val emergencyDisclaimerAccepted: StateFlow<Boolean> =
+        dataStore.prefStateFlow(key = EMERGENCY_DISCLAIMER_ACCEPTED, default = false)
 
     fun setAppIntroCompleted(completed: Boolean) {
         dataStore.setPref(key = APP_INTRO_COMPLETED, value = completed)
@@ -96,6 +102,10 @@ class UiPreferencesDataSource @Inject constructor(private val dataStore: DataSto
         dataStore.setPref(key = SHOW_IGNORED, value = value)
     }
 
+    fun setEmergencyDisclaimerAccepted(accepted: Boolean) {
+        dataStore.setPref(key = EMERGENCY_DISCLAIMER_ACCEPTED, value = accepted)
+    }
+
     private fun <T : Any> DataStore<Preferences>.prefStateFlow(
         key: Preferences.Key<T>,
         default: T,
@@ -115,5 +125,6 @@ class UiPreferencesDataSource @Inject constructor(private val dataStore: DataSto
         val ONLY_ONLINE = booleanPreferencesKey(KEY_ONLY_ONLINE)
         val ONLY_DIRECT = booleanPreferencesKey(KEY_ONLY_DIRECT)
         val SHOW_IGNORED = booleanPreferencesKey(KEY_SHOW_IGNORED)
+        val EMERGENCY_DISCLAIMER_ACCEPTED = booleanPreferencesKey(KEY_EMERGENCY_DISCLAIMER_ACCEPTED)
     }
 }

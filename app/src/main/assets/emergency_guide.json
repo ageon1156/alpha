@@ -1,0 +1,787 @@
+{
+  "app_metadata": {
+    "title": "Disaster Response First Aid & Survival Guide",
+    "version": "1.0",
+    "offline_capable": true,
+    "sources": [
+      "IFRC International First Aid Guidelines 2020",
+      "WHO Emergency First Aid & ETAT Guidelines",
+      "St John Ambulance First Aid Reference",
+      "American Red Cross & IFRC",
+      "FEMA Community Preparedness",
+      "UK Resuscitation Council"
+    ],
+    "disclaimer": "This app is designed for educational guidance only and is not a substitute for professional first aid training or emergency medical services. In case of life-threatening emergency, always contact emergency services (999/112 or local equivalent) immediately. Users provide first aid at their own risk based on their training level.",
+    "target_audience": "Non-medical civilians in disaster/emergency situations",
+    "language": "Simple, non-medical English",
+    "last_updated": "2026-01-29"
+  },
+  "first_aid": {
+    "severe_bleeding": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "Blood flowing rapidly from wound",
+        "Person feels faint or weak",
+        "Skin becomes pale and cold",
+        "Confusion or altered mental state"
+      ],
+      "steps": [
+        { "order": 1, "action": "Ensure scene safety", "details": "Move away from danger if needed; protect yourself first" },
+        { "order": 2, "action": "Apply direct pressure", "details": "Use clean cloth or dressing; press firmly on wound; wear gloves if available" },
+        { "order": 3, "action": "Maintain pressure", "details": "Do not remove first cloth; add more cloth/dressing on top if bleeding continues" },
+        { "order": 4, "action": "Elevate limb if possible", "details": "Raise injured body part above heart level to slow bleeding" },
+        { "order": 5, "action": "Call emergency services", "details": "Contact 999/112 or local equivalent immediately" }
+      ],
+      "do": [
+        "Wear gloves if available",
+        "Keep pressure on wound continuously",
+        "Elevate limb above heart",
+        "Cover wound to prevent infection",
+        "Call for emergency help immediately",
+        "Keep person calm and reassured"
+      ],
+      "do_not": [
+        "Remove the first cloth (causes rebleeding)",
+        "Release pressure to look at wound",
+        "Use tourniquet (unless trained and bleeding uncontrollable)",
+        "Give food or drink",
+        "Apply tourniquet without proper training"
+      ],
+      "danger_signs_escalate": [
+        "Bleeding does not stop after 10 minutes of direct pressure",
+        "Wound is deep, gaping, or on face/hands",
+        "Object embedded in wound",
+        "Person becomes unresponsive",
+        "Signs of shock present (cold, clammy skin; rapid weak pulse; weakness)"
+      ],
+      "escalation_action": "Call 999/112 immediately; continue pressure while waiting for help",
+      "source": "IFRC 2020, Red Cross, St John Ambulance"
+    },
+    "unconscious_person": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "Person does not respond to voice or touch",
+        "Eyes may be open or closed",
+        "Breathing may be present or absent"
+      ],
+      "steps": [
+        { "order": 1, "action": "Check scene safety", "details": "Ensure area is safe to approach" },
+        { "order": 2, "action": "Shout and tap", "details": "Shout person's name; tap shoulders gently; allow max 10 seconds for response" },
+        { "order": 3, "action": "Call for emergency services", "details": "If unresponsive, immediately get 999/112" },
+        { "order": 4, "action": "Open airway", "details": "Gently tilt head back, lift chin (unless neck injury suspected)" },
+        { "order": 5, "action": "Check breathing", "details": "Listen and feel for breath for maximum 10 seconds" },
+        { "order": 6, "action": "Place in recovery position", "details": "If breathing normally, turn onto side to keep airway open; see recovery position section" }
+      ],
+      "do": [
+        "Check responsiveness quickly",
+        "Keep airway open",
+        "Call emergency services immediately",
+        "Place in recovery position if breathing",
+        "Monitor breathing and responsiveness constantly",
+        "Be ready to perform CPR if needed"
+      ],
+      "do_not": [
+        "Give food or drink",
+        "Leave alone (unless calling for help)",
+        "Move neck or spine if trauma suspected",
+        "Cover face",
+        "Assume person is sleeping"
+      ],
+      "danger_signs_escalate": [
+        "Not breathing normally",
+        "No response to voice or touch",
+        "Injured head, neck, or spine",
+        "Any signs of shock",
+        "Anything blocking airway"
+      ],
+      "escalation_action": "Call 999/112 immediately; prepare to perform CPR if not breathing",
+      "source": "WHO, IFRC 2020, St John Ambulance"
+    },
+    "cpr_adult": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "Unresponsive AND not breathing normally (agonal gasping does NOT count)"
+      ],
+      "steps": [
+        { "order": 1, "action": "Ensure scene safety", "details": "Check for danger to yourself and person" },
+        { "order": 2, "action": "Call emergency services", "details": "Call 999/112 immediately; use speakerphone if alone with person" },
+        { "order": 3, "action": "Position person", "details": "Lay on back on firm surface" },
+        { "order": 4, "action": "Begin chest compressions", "details": "Place heel of hand on center of chest; place other hand on top; interlock fingers; push hard and fast 5-6cm deep at rate of 100-120 compressions per minute; perform 30 compressions" },
+        { "order": 5, "action": "Give rescue breaths (optional)", "details": "If willing and trained: tilt head back, pinch nose, seal mouth with yours; give 2 breaths watching chest rise. If unwilling or unable: compression-only CPR is acceptable and effective" },
+        { "order": 6, "action": "Continue CPR", "details": "Continue 30 compressions : 2 breaths pattern until professional help takes over, person wakes up, you become exhausted, or AED available" }
+      ],
+      "do": [
+        "Act fast (first minutes critical)",
+        "Use firm surface",
+        "Push hard and fast",
+        "Maintain compression depth 5-6cm",
+        "Keep airway open",
+        "Get emergency help first",
+        "Continue until professional arrives"
+      ],
+      "do_not": [
+        "Delay calling emergency services",
+        "Give up quickly",
+        "Panic or lose rhythm",
+        "Give rescue breaths without chest compressions",
+        "Perform CPR on a person who is breathing normally"
+      ],
+      "danger_signs_escalate": [
+        "No response",
+        "No normal breathing"
+      ],
+      "escalation_action": "Call 999/112 immediately; perform CPR continuously until help arrives",
+      "source": "IFRC 2020, Red Cross, UK Resuscitation Council"
+    },
+    "choking": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "Cannot speak, cry, or cough",
+        "Gasping for air",
+        "May make high-pitched sounds",
+        "Skin turning blue"
+      ],
+      "steps": [
+        { "order": 1, "action": "Ask if choking", "details": "Ask 'Are you choking?'; if nodding, act immediately" },
+        { "order": 2, "action": "Encourage coughing", "details": "If person can cough/speak, allow them to cough; don't intervene" },
+        { "order": 3, "action": "Back blows", "details": "Bend person forward at waist; give 5 sharp blows between shoulder blades with heel of hand" },
+        { "order": 4, "action": "Abdominal thrusts", "details": "Stand behind person; wrap arms around abdomen above navel; perform quick upward thrusts" },
+        { "order": 5, "action": "Alternate and repeat", "details": "Continue alternating 5 back blows and 5 thrusts until object comes out or person becomes unresponsive" }
+      ],
+      "do": [
+        "Act immediately if cannot speak/cough/breathe",
+        "Encourage coughing if person can cough",
+        "Use back blows and abdominal thrusts",
+        "Get emergency help if not resolved quickly",
+        "Monitor for improvement"
+      ],
+      "do_not": [
+        "Intervene if person can cough",
+        "Perform thrusts if person can still cough/speak",
+        "Perform CPR unless person becomes unconscious"
+      ],
+      "danger_signs_escalate": [
+        "Complete inability to breathe or speak",
+        "Skin turning blue",
+        "Person becomes unresponsive"
+      ],
+      "escalation_action": "If person becomes unresponsive, call 999/112 and begin CPR",
+      "source": "IFRC 2020, St John Ambulance, WHO"
+    },
+    "shock": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "Cold, pale, clammy skin",
+        "Rapid, weak pulse",
+        "Rapid breathing",
+        "Nausea",
+        "Weakness and confusion",
+        "Thirst (but do not give drink)",
+        "Later: blue lips/nails, unresponsiveness"
+      ],
+      "steps": [
+        { "order": 1, "action": "Treat the cause", "details": "Stop bleeding, cover burns, handle injuries" },
+        { "order": 2, "action": "Lay person flat", "details": "Position on back with head level" },
+        { "order": 3, "action": "Elevate legs", "details": "Raise legs about 30cm (unless leg/pelvis fracture, then keep flat)" },
+        { "order": 4, "action": "Keep warm", "details": "Cover with blanket; avoid direct heat" },
+        { "order": 5, "action": "Call emergency services", "details": "Contact 999/112 immediately; do not leave alone" }
+      ],
+      "do": [
+        "Treat cause of shock",
+        "Keep lying flat",
+        "Elevate legs",
+        "Keep warm",
+        "Reassure person",
+        "Call for help immediately",
+        "Monitor breathing and responsiveness"
+      ],
+      "do_not": [
+        "Give food or drink",
+        "Move unnecessarily",
+        "Apply direct heat",
+        "Leave alone"
+      ],
+      "danger_signs_escalate": [
+        "Any recognition signs above",
+        "Worsening weakness",
+        "Loss of consciousness",
+        "Stops responding"
+      ],
+      "escalation_action": "Call 999/112 immediately; continue care while waiting for help",
+      "source": "IFRC 2020, St John Ambulance, Red Cross"
+    },
+    "burns": {
+      "category": "Serious Injury",
+      "recognition": [
+        "Superficial: Red, swollen, painful (like sunburn)",
+        "Partial thickness: Red/raw, blistered, extremely painful",
+        "Full thickness: Charred, white, painless (nerve damage)"
+      ],
+      "steps": [
+        { "order": 1, "action": "Cool the burn", "details": "Run cool (NOT cold) water over burn for 20+ minutes; remove jewelry and tight clothing while cooling" },
+        { "order": 2, "action": "Do not remove stuck clothing", "details": "If fabric stuck, leave it; work around it" },
+        { "order": 3, "action": "Do not burst blisters", "details": "Leave intact to prevent infection" },
+        { "order": 4, "action": "Cover wound", "details": "Use clean plastic film or sterile dressing" },
+        { "order": 5, "action": "Get medical help", "details": "For burns larger than person's palm, on face/hands/genitals, or deep burns" }
+      ],
+      "do": [
+        "Cool with water immediately (20+ minutes)",
+        "Remove jewelry and tight items",
+        "Cover with clean dressing",
+        "Elevate burned body part",
+        "Seek medical help for serious burns",
+        "Give water to drink if conscious"
+      ],
+      "do_not": [
+        "Use ice directly (causes additional damage)",
+        "Apply creams, ointments, or butter",
+        "Burst blisters",
+        "Remove stuck clothing",
+        "Use adhesive dressings",
+        "Cover face (risk of suffocation)"
+      ],
+      "danger_signs_escalate": [
+        "Any deep or full-thickness burn",
+        "Burns larger than 1% of body (about person's palm)",
+        "Burns on face, hands, feet, or genitals",
+        "Burns that circle a limb",
+        "Electrical or chemical burns",
+        "Person elderly or very young"
+      ],
+      "escalation_action": "Call 999/112 for all serious burns; continue cooling while waiting",
+      "source": "St John Ambulance, IFRC 2020, Red Cross"
+    },
+    "fractures": {
+      "category": "Serious Injury",
+      "recognition": [
+        "Pain and swelling",
+        "Deformity (bone appears bent)",
+        "Cannot move part normally",
+        "Bruising",
+        "Grating sensation"
+      ],
+      "steps": [
+        { "order": 1, "action": "Stop movement", "details": "Immobilize injured part immediately" },
+        { "order": 2, "action": "Apply cold", "details": "Wrap ice in cloth; apply to reduce swelling (if available)" },
+        { "order": 3, "action": "Elevate", "details": "Raise limb above heart level if possible" },
+        { "order": 4, "action": "Support and splint", "details": "Use sling, cushions, or tape to keep immobilized" },
+        { "order": 5, "action": "Get medical assessment", "details": "Seek X-ray and professional evaluation" }
+      ],
+      "do": [
+        "Stop movement immediately",
+        "Support injured part",
+        "Apply cold if available",
+        "Elevate if safe",
+        "Get X-ray and medical check",
+        "Reassure person"
+      ],
+      "do_not": [
+        "Move injured part",
+        "Try to straighten",
+        "Remove shoes (swelling may prevent)",
+        "Give food or drink (surgery may be needed)",
+        "Leave unsupported"
+      ],
+      "danger_signs_escalate": [
+        "Bone protruding through skin (open fracture)",
+        "Severe swelling",
+        "Numbness or loss of feeling",
+        "Limb turning blue or pale",
+        "Severe pain",
+        "Fracture near chest or abdomen"
+      ],
+      "escalation_action": "Call 999/112 for open fractures or serious injuries; immobilize and elevate while waiting",
+      "source": "St John Ambulance, IFRC 2020"
+    },
+    "head_injury": {
+      "category": "Serious Injury",
+      "recognition": [
+        "Blow or impact to head",
+        "Wound or bleeding on scalp",
+        "Drowsiness or confusion",
+        "Vomiting",
+        "Headache",
+        "Loss of consciousness",
+        "Fluid from nose or ear",
+        "Seizures"
+      ],
+      "steps": [
+        { "order": 1, "action": "Keep still", "details": "Do not move head or neck; assume spine injury" },
+        { "order": 2, "action": "Stop bleeding", "details": "Apply light pressure with clean cloth (do not press hard)" },
+        { "order": 3, "action": "Elevate head", "details": "Slightly raise head with support" },
+        { "order": 4, "action": "Monitor condition", "details": "Watch for changes in consciousness and breathing" },
+        { "order": 5, "action": "Get emergency help", "details": "If unconscious, vomiting, or worsening confusion, call 999/112" }
+      ],
+      "do": [
+        "Keep head and neck still",
+        "Apply light pressure to bleeding",
+        "Monitor closely",
+        "Seek medical evaluation",
+        "Note any changes",
+        "Keep warm and reassured"
+      ],
+      "do_not": [
+        "Move head or spine if trauma suspected",
+        "Remove embedded objects",
+        "Apply pressure to wounds with fluid",
+        "Give food or drink if unconscious",
+        "Leave alone"
+      ],
+      "danger_signs_escalate": [
+        "Loss of consciousness (even brief)",
+        "Vomiting",
+        "Severe headache or confusion",
+        "Clear fluid from nose or ear",
+        "Seizures",
+        "Worsening condition",
+        "Difficulty breathing"
+      ],
+      "escalation_action": "Call 999/112 immediately for any loss of consciousness or warning signs",
+      "source": "St John Ambulance, IFRC 2020"
+    },
+    "snake_bite": {
+      "category": "Serious Injury",
+      "recognition": [
+        "Puncture marks or multiple wounds",
+        "Swelling and pain",
+        "Discoloration",
+        "Systemic symptoms (nausea, breathing difficulty, paralysis)"
+      ],
+      "steps": [
+        { "order": 1, "action": "Move away", "details": "Get away from animal to prevent further bites" },
+        { "order": 2, "action": "Clean wound", "details": "Gently wash with soap and water" },
+        { "order": 3, "action": "Keep still", "details": "Immobilize bitten limb (movement spreads venom)" },
+        { "order": 4, "action": "Remove constrictors", "details": "Take off rings and bracelets (swelling may occur)" },
+        { "order": 5, "action": "Get emergency help", "details": "Seek medical attention; antivenom may be needed" }
+      ],
+      "do": [
+        "Stay calm",
+        "Wash wound with soap and water",
+        "Immobilize limb",
+        "Seek medical help",
+        "Note animal description",
+        "Apply pressure if bleeding",
+        "Remove constrictors"
+      ],
+      "do_not": [
+        "Attempt to catch or kill animal",
+        "Cut wound or apply suction",
+        "Apply tourniquets (unless trained)",
+        "Apply ice directly",
+        "Ignore systemic symptoms"
+      ],
+      "danger_signs_escalate": [
+        "Systemic symptoms (nausea, breathing difficulty, numbness spreading)",
+        "Severe swelling",
+        "Bleeding that won't stop",
+        "Any sign of venom effects",
+        "Unknown animal (safer to assume dangerous)"
+      ],
+      "escalation_action": "Call 999/112 immediately; antivenom may be required",
+      "source": "IFRC 2020, WHO"
+    },
+    "heat_stroke": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "HOT DRY SKIN (not sweating) - this is critical",
+        "High body temperature (>40\u00b0C if available)",
+        "Headache and dizziness",
+        "Confusion or altered behavior",
+        "Possible loss of consciousness",
+        "Rapid breathing"
+      ],
+      "steps": [
+        { "order": 1, "action": "Move to cool place", "details": "Get out of sun and heat immediately" },
+        { "order": 2, "action": "Remove outer clothing", "details": "Allow cooling" },
+        { "order": 3, "action": "Cool the person", "details": "Use wet sheets, cold sponging, fan, or cool water spray - aggressive cooling" },
+        { "order": 4, "action": "Call emergency services", "details": "Contact 999/112 immediately" },
+        { "order": 5, "action": "Continue cooling", "details": "Until temperature drops or professional arrives" }
+      ],
+      "do": [
+        "Cool immediately (aggressive cooling)",
+        "Move to shade or cool area",
+        "Remove excess clothing",
+        "Use any cooling method",
+        "Keep person awake",
+        "Seek emergency help",
+        "Monitor temperature if possible"
+      ],
+      "do_not": [
+        "Give food or drink (choking risk)",
+        "Apply direct ice (surface cooling only)",
+        "Overheat with blankets",
+        "Leave alone"
+      ],
+      "danger_signs_escalate": [
+        "Very high temperature",
+        "Unconsciousness",
+        "Seizures",
+        "Any recognition signs"
+      ],
+      "escalation_action": "Call 999/112 immediately; aggressive cooling essential",
+      "source": "St John Ambulance, IFRC 2020"
+    },
+    "hypothermia": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "Early stage: Shivering",
+        "Late stage: Shivering stops; cold, pale, dry skin; confusion; slurred speech; drowsiness; slow breathing and pulse; risk of cardiac arrest"
+      ],
+      "steps": [
+        { "order": 1, "action": "Move to shelter", "details": "Get out of cold/wet environment" },
+        { "order": 2, "action": "Remove wet clothing", "details": "Gently (aggressive movement can cause cardiac arrest)" },
+        { "order": 3, "action": "Insulate", "details": "Wrap in blankets, sleeping bag, or emergency blanket" },
+        { "order": 4, "action": "Cover head", "details": "Heat loss through head is significant" },
+        { "order": 5, "action": "Get medical help", "details": "Seek professional assessment even if appears recovered" }
+      ],
+      "do": [
+        "Remove wet clothes gently",
+        "Insulate and cover head",
+        "Move to warm shelter",
+        "Give warm (not hot) drinks if conscious",
+        "Seek emergency help",
+        "Monitor breathing and responsiveness"
+      ],
+      "do_not": [
+        "Rub skin (causes ice crystal damage)",
+        "Apply direct heat or hot water",
+        "Give alcohol",
+        "Leave alone if severely affected",
+        "Assume person is dead (rewarm fully first)"
+      ],
+      "danger_signs_escalate": [
+        "Severe confusion or unresponsiveness",
+        "No shivering (late stage)",
+        "Difficulty breathing",
+        "Slow or weak pulse"
+      ],
+      "escalation_action": "Call 999/112 for severe hypothermia; gentle rewarming important",
+      "source": "St John Ambulance, IFRC 2020"
+    },
+    "drowning": {
+      "category": "Life-Threatening",
+      "recognition": [
+        "Struggling or splashing in water",
+        "Unresponsive in or out of water",
+        "Gasping or no breathing when pulled out",
+        "Blue lips or skin"
+      ],
+      "steps": [
+        { "order": 1, "action": "Get person out of water", "details": "Safely remove from water (do not endanger yourself; don't enter if can't swim)" },
+        { "order": 2, "action": "Check responsiveness", "details": "Tap, shout, assess" },
+        { "order": 3, "action": "Call for help", "details": "Contact 999/112 immediately" },
+        { "order": 4, "action": "Check breathing", "details": "Maximum 10 seconds" },
+        { "order": 5, "action": "Start CPR if not breathing", "details": "For drowning: give 5 initial rescue breaths first, then 30:2 pattern" }
+      ],
+      "do": [
+        "Get out of water safely",
+        "Call for help immediately",
+        "Clear airway if obstructed",
+        "Start CPR if not breathing",
+        "Place in recovery position if breathing",
+        "Keep warm after rescue"
+      ],
+      "do_not": [
+        "Enter water if can't swim",
+        "Leave alone",
+        "Assume person is fine after rescue"
+      ],
+      "danger_signs_escalate": [
+        "Not breathing",
+        "Unresponsiveness",
+        "Gasping or difficult breathing",
+        "Any coughing/wheezing later (secondary drowning can occur hours later)"
+      ],
+      "escalation_action": "Call 999/112 immediately; perform CPR if needed",
+      "source": "IFRC 2020, St John Ambulance, WHO"
+    }
+  },
+  "disaster_survival": {
+    "earthquake": {
+      "hazard_type": "Natural Disaster - Sudden Onset",
+      "before": [
+        "Identify safe spots at home and work (under sturdy table, against interior wall)",
+        "Practice 'Drop, Cover, Hold On' with family",
+        "Secure heavy furniture to walls",
+        "Know how to turn off gas and electricity",
+        "Prepare emergency kit with water, food, first aid"
+      ],
+      "during": [
+        "Indoors: Drop to hands and knees \u2192 Cover head/neck under sturdy table \u2192 Hold on until shaking stops",
+        "Outdoors: Move away from buildings, power lines, and trees",
+        "In vehicle: Stay inside; move away from power lines and overpasses",
+        "Trapped: Do not shout; tap on pipe or wall to signal rescuers"
+      ],
+      "after": [
+        "Check for injuries and provide first aid",
+        "Check for hazards (gas leak, electrical damage, structural damage)",
+        "If smell gas: turn off gas at meter outside",
+        "If see sparks: turn off electricity at main breaker",
+        "Exit building using stairs (not elevators); check for structural damage",
+        "Stay out of damaged buildings",
+        "Listen to emergency broadcasts"
+      ],
+      "do": [
+        "Drop, cover, hold on during shaking",
+        "Stay calm",
+        "Check for hazards",
+        "Help neighbors",
+        "Follow evacuation orders"
+      ],
+      "do_not": [
+        "Run outside during shaking (falling debris danger)",
+        "Use elevators",
+        "Return to damaged buildings",
+        "Ignore official evacuation orders"
+      ],
+      "source": "FEMA, IFRC 2020"
+    },
+    "flood": {
+      "hazard_type": "Natural Disaster - May Develop Quickly",
+      "before": [
+        "Know evacuation routes and high ground locations",
+        "Keep important documents in waterproof container",
+        "Have emergency kit ready",
+        "Know location of high ground near home"
+      ],
+      "during": [
+        "If ordered to evacuate: Leave immediately; do not delay",
+        "If trapped in building: Go to highest floor or roof; signal for help",
+        "If in vehicle: Do not drive through floodwater; turn around (6 inches can knock person over; 12 inches can sweep car away)"
+      ],
+      "after": [
+        "Avoid floodwater (contamination risk)",
+        "Return home only when safe",
+        "Check for structural damage and electrical hazards",
+        "Use caution entering building (weakened floors)",
+        "Boil water before drinking (if advised)",
+        "Dispose of contaminated food"
+      ],
+      "do": [
+        "Evacuate early",
+        "Stay on high ground",
+        "Avoid floodwater",
+        "Wash hands frequently",
+        "Listen to official updates"
+      ],
+      "do_not": [
+        "Drive through flooded areas",
+        "Drink or swim in floodwater",
+        "Return home until safe"
+      ],
+      "source": "FEMA, IFRC 2020"
+    },
+    "fire": {
+      "hazard_type": "Human/Natural - Rapid Onset",
+      "before": [
+        "Plan escape route from each room",
+        "Practice evacuation plan with family",
+        "Install and test smoke detectors",
+        "Keep fire extinguisher accessible",
+        "Know location of exits"
+      ],
+      "during": [
+        "Get out fast - leave immediately if fire or smoke detected",
+        "Close doors - slows spread of fire and smoke",
+        "Stay low - crawl under smoke (fresher air near floor)",
+        "Don't stop - do not hide or collect valuables",
+        "Use stairs - never use elevators"
+      ],
+      "after": [
+        "Go to designated meeting point",
+        "Account for all family members",
+        "Contact emergency services if not already done",
+        "Do not re-enter building"
+      ],
+      "do": [
+        "Get out fast",
+        "Close doors",
+        "Crawl under smoke",
+        "Meet at predetermined place",
+        "Call emergency services"
+      ],
+      "do_not": [
+        "Stop to collect items",
+        "Hide",
+        "Use elevators",
+        "Re-enter building"
+      ],
+      "source": "FEMA, St John Ambulance"
+    },
+    "cyclone_severe_storm": {
+      "hazard_type": "Natural Disaster - Advanced Warning Usually",
+      "before": [
+        "Identify safe room (interior room, lowest level, away from windows)",
+        "Secure outdoor items (furniture, trash cans, branches)",
+        "Prepare emergency kit",
+        "Know evacuation routes"
+      ],
+      "during": [
+        "Go to safe room - interior room on lowest floor, away from windows",
+        "Stay inside - do not go outside",
+        "Get under sturdy object - table, mattress for protection",
+        "Protect head/neck - use pillows and blankets",
+        "Stay until all clear - do not leave until weather improves significantly"
+      ],
+      "after": [
+        "Check for injuries and provide first aid",
+        "Look for hazards (downed power lines, debris, structural damage)",
+        "Stay out of damaged buildings",
+        "Avoid floodwater",
+        "Listen to official updates"
+      ],
+      "do": [
+        "Go to safe room immediately",
+        "Protect head and neck",
+        "Stay indoors",
+        "Stay under protection"
+      ],
+      "do_not": [
+        "Look outside",
+        "Leave safe room",
+        "Go outside during storm",
+        "Enter damaged buildings"
+      ],
+      "source": "FEMA, IFRC 2020"
+    },
+    "landslide": {
+      "hazard_type": "Natural Disaster - May Develop Quickly",
+      "before": [
+        "Know if in landslide-prone area",
+        "Have evacuation plan",
+        "Know warning signs: unusual animal behavior, cracked ground, springs appearing, trees tilting"
+      ],
+      "during": [
+        "Evacuate if signs of landslide appear",
+        "Move perpendicular - move at right angle to slide direction (not downslope)",
+        "Get to high ground - away from slide path",
+        "Call for help - alert emergency services if hazard near populated area"
+      ],
+      "after": [
+        "Check for trapped persons",
+        "Report to authorities",
+        "Avoid slide area (may be unstable)",
+        "Check for new cracks or hazards"
+      ],
+      "do": [
+        "Evacuate early",
+        "Move perpendicular to flow",
+        "Get to high ground"
+      ],
+      "do_not": [
+        "Stay in path",
+        "Go downslope",
+        "Enter slide zone"
+      ],
+      "source": "FEMA, IFRC 2020"
+    }
+  },
+  "basic_survival": {
+    "temporary_shelter": {
+      "purpose": "Protection from weather and elements",
+      "steps": [
+        { "order": 1, "action": "Identify location", "details": "High, dry ground; away from hazards (dead trees, unstable slopes)" },
+        { "order": 2, "action": "Use natural features", "details": "Rock overhangs, dense trees, existing buildings if safe" },
+        { "order": 3, "action": "Build wind/rain protection", "details": "Use plastic sheeting, tarps, cardboard, branches; create barrier; angle to shed rain" },
+        { "order": 4, "action": "Insulate from ground", "details": "Pile leaves, cardboard, blankets under shelter" },
+        { "order": 5, "action": "Ensure ventilation", "details": "Leave small opening if heating with fire (prevent carbon monoxide)" }
+      ],
+      "do": [
+        "Choose dry, elevated location",
+        "Protect from wind and rain",
+        "Insulate from ground",
+        "Allow ventilation",
+        "Repair as weather deteriorates"
+      ],
+      "do_not": [
+        "Build near hazards",
+        "Use plastic sheeting without ventilation in enclosed space",
+        "Close off completely if using fire for heat"
+      ],
+      "source": "FEMA, IFRC 2020"
+    },
+    "safe_water": {
+      "purpose": "Access to safe water is life-sustaining; contaminated water causes diarrhea and disease",
+      "steps": [
+        { "order": 1, "action": "Use bottled water first", "details": "Sealed containers are safest option" },
+        { "order": 2, "action": "Boil water if no bottled water", "details": "Bring to rolling boil for at least 1 minute; cool before drinking; store in clean covered container" },
+        { "order": 3, "action": "Disinfect if boiling impossible", "details": "Add 6 drops household bleach (unscented) per gallon; wait 30 minutes before drinking. Or use water purification tablets per package instructions" },
+        { "order": 4, "action": "Filter first if water is cloudy", "details": "Filter through cloth to remove particles; then boil or disinfect" },
+        { "order": 5, "action": "Store safely", "details": "Use sealed containers in cool dark place; cover to prevent contamination and mosquito breeding" }
+      ],
+      "do": [
+        "Boil water when possible",
+        "Use clean containers",
+        "Disinfect before storing",
+        "Store away from chemicals/fuel",
+        "Drink regularly (dehydration risk)"
+      ],
+      "do_not": [
+        "Drink untreated surface water",
+        "Store in old chemical containers",
+        "Use floodwater (contamination risk)",
+        "Share drinking cups (disease transmission)"
+      ],
+      "source": "WHO, FEMA"
+    },
+    "food_safety": {
+      "purpose": "When refrigeration is lost, food safety depends on temperature and time",
+      "steps": [
+        { "order": 1, "action": "Use perishables first", "details": "Eat refrigerated food before it spoils; food at 40\u00b0F/4\u00b0C or below is safe" },
+        { "order": 2, "action": "Check before eating", "details": "Discard if above 40\u00b0F for more than 2 hours, or if meat/fish smells off or is slimy" },
+        { "order": 3, "action": "Use shelf-stable foods", "details": "Canned goods, crackers, nuts, dried fruit, peanut butter, cereals" },
+        { "order": 4, "action": "Maintain hygiene", "details": "Wash hands before eating; use clean utensils; cook food thoroughly if possible" },
+        { "order": 5, "action": "Discard unsafe food", "details": "Anything moldy, from dented/leaking cans, or from damaged containers" }
+      ],
+      "do": [
+        "Use shelf-stable foods",
+        "Store in cool location",
+        "Check condition before eating",
+        "Maintain hygiene"
+      ],
+      "do_not": [
+        "Eat suspicious food",
+        "Store in damaged containers",
+        "Leave cooked food unrefrigerated >2 hours",
+        "Ignore signs of spoilage"
+      ],
+      "source": "FEMA, WHO"
+    },
+    "hygiene_sanitation": {
+      "purpose": "Good hygiene prevents disease transmission; most effective intervention is hand washing",
+      "steps": [
+        { "order": 1, "action": "Wash hands frequently", "details": "After toilet, before eating/cooking, after touching wounds. Wet hands, use soap, scrub all surfaces 20+ seconds, rinse, air dry" },
+        { "order": 2, "action": "If water is scarce", "details": "Use ash, sand, or soil for scrubbing; rinse with minimal water; allow air dry" },
+        { "order": 3, "action": "Manage waste properly", "details": "Use latrine if available; otherwise designate area away from water and living space; bury waste 30+ cm deep" },
+        { "order": 4, "action": "Keep living area clean", "details": "Bury/burn garbage away from shelter; keep food waste in covered container; don't let animals access waste" },
+        { "order": 5, "action": "Prevent infection spread", "details": "Don't share cups/utensils; cover coughs/sneezes; isolate ill persons if possible; avoid touching face/eyes" }
+      ],
+      "do": [
+        "Wash hands frequently (20+ seconds with soap)",
+        "Maintain clean living area",
+        "Cover wounds",
+        "Isolate ill persons",
+        "Keep water clean and covered"
+      ],
+      "do_not": [
+        "Drink untreated water",
+        "Neglect hand washing",
+        "Share cups/utensils",
+        "Leave waste exposed",
+        "Ignore signs of illness"
+      ],
+      "source": "WHO, FEMA, IFRC 2020"
+    }
+  },
+  "legal_disclaimers": {
+    "general_disclaimer": "This information is not a substitute for professional first aid training or medical care. In case of life-threatening emergency, always call emergency services (999/112 or local equivalent) immediately. First aid should be provided only to the level of training received. These guidelines are for educational purposes for non-medical civilians to support emergency response.",
+    "offline_limitation": "This app is designed for offline emergency guidance only. In areas with cellular or radio coverage, immediately contact emergency services for professional medical help.",
+    "training_recommendation": "For best results, users should complete formal first aid training with a recognized organization (Red Cross, St John Ambulance, etc.). This app supplements, not replaces, such training.",
+    "liability_protection": "Users provide first aid at their own risk. This app is provided for educational guidance; users assume responsibility for decisions and outcomes. This content is based on authoritative sources but may not cover all situations or local variations.",
+    "escalation_emphasis": "When in doubt, seek professional medical help. Contact emergency services for any life-threatening condition.",
+    "medical_limitation": "No diagnosis: This app does not provide medical diagnosis. No medications: This app does not include medication names or dosages. No advanced procedures: This app describes basic first aid only.",
+    "sources_transparency": "All content sourced from authoritative organizations: IFRC, WHO, Red Cross, St John Ambulance, FEMA, Resuscitation Council. Content paraphrased to avoid verbatim copying; suitable for educational use.",
+    "version_note": "These guidelines are current as of January 2026 based on 2020 authoritative standards. Medical guidance evolves; consult current official sources for updates.",
+    "accessibility_note": "This app is designed for offline use in disaster/emergency situations without internet access. For comprehensive information, visit official organization websites."
+  }
+}
