@@ -37,14 +37,14 @@ fun organicNavigationSuiteColors(): NavigationSuiteItemColors {
 
     return NavigationSuiteDefaults.itemColors(
         navigationBarItemColors = NavigationBarItemDefaults.colors(
-            // Selected state - Primary organic color
-            selectedIconColor = scheme.primary,
+            // Selected state - white icon on filled primary indicator
+            selectedIconColor = scheme.onPrimary,
             selectedTextColor = scheme.primary,
-            indicatorColor = scheme.primaryContainer.copy(alpha = 0.5f),
+            indicatorColor = scheme.primary,
 
-            // Unselected state - Muted organic colors
-            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.7f),
-            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.7f),
+            // Unselected state - Muted
+            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
+            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
 
             // Disabled state
             disabledIconColor = scheme.onSurface.copy(alpha = 0.38f),
@@ -52,13 +52,13 @@ fun organicNavigationSuiteColors(): NavigationSuiteItemColors {
         ),
         navigationRailItemColors = NavigationRailItemDefaults.colors(
             // Selected state for navigation rail
-            selectedIconColor = scheme.primary,
+            selectedIconColor = scheme.onPrimary,
             selectedTextColor = scheme.primary,
-            indicatorColor = scheme.primaryContainer.copy(alpha = 0.5f),
+            indicatorColor = scheme.primary,
 
             // Unselected state for navigation rail
-            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.7f),
-            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.7f),
+            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
+            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
 
             // Disabled state
             disabledIconColor = scheme.onSurface.copy(alpha = 0.38f),

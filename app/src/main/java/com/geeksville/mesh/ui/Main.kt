@@ -21,7 +21,6 @@ package com.geeksville.mesh.ui
 import android.Manifest
 import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
@@ -47,7 +46,6 @@ import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.PlainTooltip
@@ -154,14 +152,13 @@ import org.meshtastic.core.ui.qr.ScannedQrCodeDialog
 import org.meshtastic.core.ui.share.SharedContactDialog
 import org.meshtastic.core.ui.theme.StatusColors.StatusBlue
 import org.meshtastic.core.ui.theme.StatusColors.StatusGreen
-import org.meshtastic.core.ui.theme.organicTweenShort
 import org.meshtastic.feature.node.metrics.annotateTraceroute
 import org.meshtastic.proto.MeshProtos
 
 enum class TopLevelDestination(val label: StringResource, val icon: ImageVector, val route: Route) {
-    Conversations(Res.string.conversations, MeshtasticIcons.Conversations, ContactsRoutes.ContactsGraph),
-    Nodes(Res.string.nodes, MeshtasticIcons.Nodes, NodesRoutes.NodesGraph),
     Map(Res.string.map, MeshtasticIcons.Map, MapRoutes.Map()),
+    Nodes(Res.string.nodes, MeshtasticIcons.Nodes, NodesRoutes.NodesGraph),
+    Conversations(Res.string.conversations, MeshtasticIcons.Conversations, ContactsRoutes.ContactsGraph),
     Settings(Res.string.bottom_nav_settings, MeshtasticIcons.Settings, SettingsRoutes.SettingsGraph()),
     Connections(Res.string.connections, Icons.Rounded.Wifi, ConnectionsRoutes.ConnectionsGraph),
     ;
@@ -514,18 +511,10 @@ fun MainScreen(uIViewModel: UIViewModel = hiltViewModel(), scanModel: BTScanMode
                                         }
                                     },
                                 ) {
-                                    Crossfade(
-                                        targetState = isSelected,
-                                        animationSpec = organicTweenShort(),
-                                        label = "BottomBarIcon"
-                                    ) { isSelectedState ->
-                                        Icon(
-                                            imageVector = destination.icon,
-                                            contentDescription = stringResource(destination.label),
-                                            tint =
-                                            if (isSelectedState) colorScheme.primary else LocalContentColor.current,
-                                        )
-                                    }
+                                    Icon(
+                                        imageVector = destination.icon,
+                                        contentDescription = stringResource(destination.label),
+                                    )
                                 }
                             }
                         }
