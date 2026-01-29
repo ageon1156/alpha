@@ -167,3 +167,9 @@ object EmergencyRoutes {
 
     @Serializable data class EmergencyTopic(val section: String, val topicId: String) : Route
 }
+
+object SOSRoutes {
+    @Serializable data object SOSGraph : Graph
+
+    @Serializable data object SOSHome : Route
+}

@@ -1,0 +1,146 @@
+/*
+ * Copyright (c) 2025-2026 Meshtastic LLC
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package org.meshtastic.feature.sos
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.location.Location
+import android.location.LocationManager
+import android.os.RemoteException
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import org.meshtastic.core.common.hasLocationPermission
+import org.meshtastic.core.model.DataPacket
+import org.meshtastic.core.service.ConnectionState
+import org.meshtastic.core.service.ServiceRepository
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
+import javax.inject.Inject
+
+sealed interface SOSUiState {
+    data object Ready : SOSUiState
+    data object Sending : SOSUiState
+    data class Sent(val locationIncluded: Boolean) : SOSUiState
+    data class Error(val message: String) : SOSUiState
+}
+
+@HiltViewModel
+class SOSViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val serviceRepository: ServiceRepository,
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow<SOSUiState>(SOSUiState.Ready)
+    val uiState: StateFlow<SOSUiState> = _uiState.asStateFlow()
+
+    val connectionState: StateFlow<ConnectionState> = serviceRepository.connectionState
+
+    private val _showConfirmDialog = MutableStateFlow(false)
+    val showConfirmDialog: StateFlow<Boolean> = _showConfirmDialog.asStateFlow()
+
+    private val _lastSentTime = MutableStateFlow<Long?>(null)
+    val lastSentTime: StateFlow<Long?> = _lastSentTime.asStateFlow()
+
+    fun requestSOS() {
+        _showConfirmDialog.value = true
+    }
+
+    fun dismissConfirmation() {
+        _showConfirmDialog.value = false
+    }
+
+    fun confirmAndSendSOS() {
+        _showConfirmDialog.value = false
+        viewModelScope.launch {
+            _uiState.value = SOSUiState.Sending
+            try {
+                val location = getLastKnownLocation()
+                val messageText = formatSOSMessage(location)
+                val packet = DataPacket(
+                    to = DataPacket.ID_BROADCAST,
+                    channel = 0,
+                    text = messageText,
+                )
+                serviceRepository.meshService?.send(packet)
+                    ?: run {
+                        _uiState.value = SOSUiState.Error("Mesh service not available")
+                        return@launch
+                    }
+                _lastSentTime.value = System.currentTimeMillis()
+                _uiState.value = SOSUiState.Sent(locationIncluded = location != null)
+            } catch (ex: RemoteException) {
+                Logger.e(ex) { "SOS send failed" }
+                _uiState.value = SOSUiState.Error(ex.message ?: "Send failed")
+            } catch (ex: Exception) {
+                Logger.e(ex) { "SOS send failed" }
+                _uiState.value = SOSUiState.Error(ex.message ?: "Unknown error")
+            }
+        }
+    }
+
+    fun resetState() {
+        _uiState.value = SOSUiState.Ready
+    }
+
+    fun getLocationText(): Pair<Double, Double>? {
+        val location = getLastKnownLocation() ?: return null
+        return location.latitude to location.longitude
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLastKnownLocation(): Location? {
+        if (!context.hasLocationPermission()) return null
+        val locationManager =
+            context.getSystemService(Context.LOCATION_SERVICE) as? LocationManager ?: return null
+        return listOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
+            .mapNotNull { provider ->
+                runCatching { locationManager.getLastKnownLocation(provider) }.getOrNull()
+            }
+            .maxByOrNull { it.time }
+    }
+
+    private fun formatSOSMessage(location: Location?): String {
+        val timestamp = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }.format(Date())
+
+        return buildString {
+            appendLine("SOS EMERGENCY")
+            if (location != null) {
+                appendLine("Location: %.4f, %.4f".format(location.latitude, location.longitude))
+                append(
+                    "https://maps.google.com/maps?q=%.4f,%.4f".format(
+                        location.latitude,
+                        location.longitude,
+                    )
+                )
+            } else {
+                append("Location: unavailable")
+            }
+        }
+    }
+}

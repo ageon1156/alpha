@@ -41,6 +41,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ChatBubbleOutline
+import androidx.compose.material.icons.outlined.Explore
+import androidx.compose.material.icons.outlined.HealthAndSafety
+import androidx.compose.material.icons.outlined.Hub
+import androidx.compose.material.icons.outlined.Sos
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material.icons.rounded.Wifi
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
@@ -54,6 +60,9 @@ import androidx.compose.material3.TooltipAnchorPosition
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.NavigationRailItemDefaults
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
@@ -93,6 +102,7 @@ import com.geeksville.mesh.navigation.connectionsGraph
 import com.geeksville.mesh.navigation.contactsGraph
 import com.geeksville.mesh.navigation.emergencyGraph
 import com.geeksville.mesh.navigation.firmwareGraph
+import com.geeksville.mesh.navigation.sosGraph
 import com.geeksville.mesh.navigation.mapGraph
 import com.geeksville.mesh.navigation.nodesGraph
 import com.geeksville.mesh.navigation.settingsGraph
@@ -114,6 +124,7 @@ import org.meshtastic.core.navigation.ConnectionsRoutes
 import org.meshtastic.core.navigation.ContactsRoutes
 import org.meshtastic.core.navigation.EmergencyRoutes
 import org.meshtastic.core.navigation.MapRoutes
+import org.meshtastic.core.navigation.SOSRoutes
 import org.meshtastic.core.navigation.NodeDetailRoutes
 import org.meshtastic.core.navigation.NodesRoutes
 import org.meshtastic.core.navigation.Route
@@ -141,17 +152,12 @@ import org.meshtastic.core.strings.nodes
 import org.meshtastic.core.strings.okay
 import org.meshtastic.core.strings.should_update
 import org.meshtastic.core.strings.should_update_firmware
+import org.meshtastic.core.strings.sos
 import org.meshtastic.core.strings.traceroute
 import org.meshtastic.core.strings.view_on_map
 import org.meshtastic.core.ui.component.MultipleChoiceAlertDialog
 import org.meshtastic.core.ui.component.ScrollToTopEvent
 import org.meshtastic.core.ui.component.SimpleAlertDialog
-import org.meshtastic.core.ui.icon.Conversations
-import org.meshtastic.core.ui.icon.Emergency
-import org.meshtastic.core.ui.icon.Map
-import org.meshtastic.core.ui.icon.MeshtasticIcons
-import org.meshtastic.core.ui.icon.Nodes
-import org.meshtastic.core.ui.icon.Settings
 import org.meshtastic.core.ui.qr.ScannedQrCodeDialog
 import org.meshtastic.core.ui.share.SharedContactDialog
 import org.meshtastic.core.ui.theme.StatusColors.StatusBlue
@@ -160,11 +166,12 @@ import org.meshtastic.feature.node.metrics.annotateTraceroute
 import org.meshtastic.proto.MeshProtos
 
 enum class TopLevelDestination(val label: StringResource, val icon: ImageVector, val route: Route) {
-    Map(Res.string.map, MeshtasticIcons.Map, MapRoutes.Map()),
-    Nodes(Res.string.nodes, MeshtasticIcons.Nodes, NodesRoutes.NodesGraph),
-    Conversations(Res.string.conversations, MeshtasticIcons.Conversations, ContactsRoutes.ContactsGraph),
-    Emergency(Res.string.emergency_help, MeshtasticIcons.Emergency, EmergencyRoutes.EmergencyGraph),
-    Settings(Res.string.bottom_nav_settings, MeshtasticIcons.Settings, SettingsRoutes.SettingsGraph()),
+    Map(Res.string.map, Icons.Outlined.Explore, MapRoutes.Map()),
+    Nodes(Res.string.nodes, Icons.Outlined.Hub, NodesRoutes.NodesGraph),
+    Conversations(Res.string.conversations, Icons.Outlined.ChatBubbleOutline, ContactsRoutes.ContactsGraph),
+    Emergency(Res.string.emergency_help, Icons.Outlined.HealthAndSafety, EmergencyRoutes.EmergencyGraph),
+    SOS(Res.string.sos, Icons.Outlined.Sos, SOSRoutes.SOSGraph),
+    Settings(Res.string.bottom_nav_settings, Icons.Outlined.Tune, SettingsRoutes.SettingsGraph()),
     Connections(Res.string.connections, Icons.Rounded.Wifi, ConnectionsRoutes.ConnectionsGraph),
     ;
 
@@ -428,6 +435,23 @@ fun MainScreen(uIViewModel: UIViewModel = hiltViewModel(), scanModel: BTScanMode
         }
     }
 
+    val minimalItemColors = NavigationSuiteDefaults.itemColors(
+        navigationBarItemColors = NavigationBarItemDefaults.colors(
+            selectedIconColor = colorScheme.primary,
+            selectedTextColor = colorScheme.primary,
+            indicatorColor = colorScheme.primary.copy(alpha = 0.12f),
+            unselectedIconColor = colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+            unselectedTextColor = colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+        ),
+        navigationRailItemColors = NavigationRailItemDefaults.colors(
+            selectedIconColor = colorScheme.primary,
+            selectedTextColor = colorScheme.primary,
+            indicatorColor = colorScheme.primary.copy(alpha = 0.12f),
+            unselectedIconColor = colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+            unselectedTextColor = colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+        ),
+    )
+
     NavigationSuiteScaffold(
         modifier = Modifier.fillMaxSize(),
         navigationSuiteItems = {
@@ -435,6 +459,7 @@ fun MainScreen(uIViewModel: UIViewModel = hiltViewModel(), scanModel: BTScanMode
                 val isSelected = destination == topLevelDestination
                 val isConnectionsRoute = destination == TopLevelDestination.Connections
                 item(
+                    colors = minimalItemColors,
                     icon = {
                         TooltipBox(
                             positionProvider =
@@ -588,6 +613,7 @@ fun MainScreen(uIViewModel: UIViewModel = hiltViewModel(), scanModel: BTScanMode
             settingsGraph(navController)
             firmwareGraph(navController)
             emergencyGraph(navController)
+            sosGraph(navController)
         }
     }
 }

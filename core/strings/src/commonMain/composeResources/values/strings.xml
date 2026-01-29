@@ -1168,4 +1168,24 @@
     <string name="emergency_serious_injury">Serious Injury</string>
     <string name="emergency_hazard_type">Hazard Type</string>
     <string name="emergency_purpose">Purpose</string>
+
+    <!-- SOS -->
+    <string name="sos">SOS</string>
+    <string name="sos_screen_title">SOS Emergency</string>
+    <string name="sos_send_button">SEND SOS</string>
+    <string name="sos_confirm_title">Confirm SOS</string>
+    <string name="sos_confirm_message">This will broadcast an emergency SOS message to all nodes on the mesh network. Continue?</string>
+    <string name="sos_confirm_send">SEND SOS</string>
+    <string name="sos_cancel">Cancel</string>
+    <string name="sos_sending">Sending SOS…</string>
+    <string name="sos_sent_success">SOS sent successfully</string>
+    <string name="sos_sent_location_included">Location included</string>
+    <string name="sos_sent_location_unavailable">Location unavailable</string>
+    <string name="sos_send_failed">Failed to send SOS</string>
+    <string name="sos_info_text">Broadcasts an emergency message with your location to all nodes on the mesh. Works fully offline.</string>
+    <string name="sos_gps_available">GPS: %1$.4f, %2$.4f</string>
+    <string name="sos_gps_unavailable">GPS: Location unavailable</string>
+    <string name="sos_not_connected">Not connected to mesh</string>
+    <string name="sos_tap_to_retry">Tap to send again</string>
+    <string name="sos_last_sent">Last SOS sent: %1$s</string>
 </resources>

@@ -27,9 +27,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 /**
- * Organic color scheme for navigation items
+ * Minimal, clean color scheme for navigation items.
  *
- * Uses nature-inspired colors with smooth transitions
+ * Subtle indicator, subdued unselected states, flat appearance.
  */
 @Composable
 fun organicNavigationSuiteColors(): NavigationSuiteItemColors {
@@ -37,42 +37,25 @@ fun organicNavigationSuiteColors(): NavigationSuiteItemColors {
 
     return NavigationSuiteDefaults.itemColors(
         navigationBarItemColors = NavigationBarItemDefaults.colors(
-            // Selected state - white icon on filled primary indicator
-            selectedIconColor = scheme.onPrimary,
-            selectedTextColor = scheme.primary,
-            indicatorColor = scheme.primary,
-
-            // Unselected state - Muted
-            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
-            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
-
-            // Disabled state
-            disabledIconColor = scheme.onSurface.copy(alpha = 0.38f),
-            disabledTextColor = scheme.onSurface.copy(alpha = 0.38f),
-        ),
-        navigationRailItemColors = NavigationRailItemDefaults.colors(
-            // Selected state for navigation rail
-            selectedIconColor = scheme.onPrimary,
-            selectedTextColor = scheme.primary,
-            indicatorColor = scheme.primary,
-
-            // Unselected state for navigation rail
-            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
-            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.6f),
-
-            // Disabled state
-            disabledIconColor = scheme.onSurface.copy(alpha = 0.38f),
-            disabledTextColor = scheme.onSurface.copy(alpha = 0.38f),
-        ),
-        navigationDrawerItemColors = NavigationDrawerItemDefaults.colors(
-            // Selected state for navigation drawer
             selectedIconColor = scheme.primary,
             selectedTextColor = scheme.primary,
-            selectedContainerColor = scheme.primaryContainer.copy(alpha = 0.3f),
-
-            // Unselected state
-            unselectedIconColor = scheme.onSurfaceVariant,
-            unselectedTextColor = scheme.onSurfaceVariant,
+            indicatorColor = scheme.primary.copy(alpha = 0.12f),
+            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.5f),
+            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.5f),
+        ),
+        navigationRailItemColors = NavigationRailItemDefaults.colors(
+            selectedIconColor = scheme.primary,
+            selectedTextColor = scheme.primary,
+            indicatorColor = scheme.primary.copy(alpha = 0.12f),
+            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.5f),
+            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.5f),
+        ),
+        navigationDrawerItemColors = NavigationDrawerItemDefaults.colors(
+            selectedIconColor = scheme.primary,
+            selectedTextColor = scheme.primary,
+            selectedContainerColor = scheme.primary.copy(alpha = 0.12f),
+            unselectedIconColor = scheme.onSurfaceVariant.copy(alpha = 0.5f),
+            unselectedTextColor = scheme.onSurfaceVariant.copy(alpha = 0.5f),
             unselectedContainerColor = Color.Transparent,
         )
     )

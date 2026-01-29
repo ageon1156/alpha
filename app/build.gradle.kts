@@ -203,6 +203,7 @@ dependencies {
     implementation(projects.feature.settings)
     implementation(projects.feature.firmware)
     implementation(projects.feature.emergency)
+    implementation(projects.feature.sos)
 
     implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.androidx.compose.material3.adaptive.layout)
