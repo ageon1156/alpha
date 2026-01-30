@@ -153,6 +153,9 @@ constructor(
     suspend fun findPacketsWithId(packetId: Int) =
         withContext(dispatchers.io) { dbManager.currentDb.value.packetDao().findPacketsWithId(packetId) }
 
+    suspend fun findPacketsWithIdAndContact(packetId: Int, contactKey: String) =
+        withContext(dispatchers.io) { dbManager.currentDb.value.packetDao().findPacketsWithIdAndContact(packetId, contactKey) }
+
     @Suppress("CyclomaticComplexMethod")
     suspend fun updateSFPPStatus(
         packetId: Int,

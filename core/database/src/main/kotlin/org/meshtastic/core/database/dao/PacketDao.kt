@@ -273,12 +273,22 @@ interface PacketDao {
 
     @Query(
         """
-        SELECT * FROM packet 
-        WHERE packet_id = :packetId 
+        SELECT * FROM packet
+        WHERE packet_id = :packetId
         AND (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
         """,
     )
     suspend fun findPacketsWithId(packetId: Int): List<Packet>
+
+    @Query(
+        """
+        SELECT * FROM packet
+        WHERE packet_id = :packetId
+        AND contact_key = :contactKey
+        AND (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
+        """,
+    )
+    suspend fun findPacketsWithIdAndContact(packetId: Int, contactKey: String): List<Packet>
 
     @Transaction
     @Query(

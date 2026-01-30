@@ -647,8 +647,8 @@ constructor(
             )
         scope.handledLaunch {
             packetRepository.get().apply {
-                // Check for duplicates before inserting
-                val existingPackets = findPacketsWithId(dataPacket.id)
+                // Check for duplicates by packet_id + contact_key
+                val existingPackets = findPacketsWithIdAndContact(dataPacket.id, contactKey)
                 if (existingPackets.isNotEmpty()) {
                     Logger.d {
                         "Skipping duplicate packet: packetId=${dataPacket.id} from=${dataPacket.from} " +
