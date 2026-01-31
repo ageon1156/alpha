@@ -142,12 +142,15 @@ constructor(
     }
 
     private fun sendNow(p: DataPacket) {
+        val packetPriority = MeshPacket.Priority.forNumber(p.priority)
+            ?: MeshPacket.Priority.UNSET
         val meshPacket =
             newMeshPacketTo(p.to ?: DataPacket.ID_BROADCAST).buildMeshPacket(
                 id = p.id,
                 wantAck = p.wantAck,
                 hopLimit = if (p.hopLimit > 0) p.hopLimit else getHopLimit(),
                 channel = p.channel,
+                priority = packetPriority,
             ) {
                 portnumValue = p.dataType
                 payload = ByteString.copyFrom(p.bytes ?: ByteArray(0))

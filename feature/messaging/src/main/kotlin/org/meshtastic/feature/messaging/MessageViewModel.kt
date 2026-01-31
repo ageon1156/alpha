@@ -158,7 +158,7 @@ constructor(
      * @param replyId The ID of the message this is a reply to, if any.
      */
     @Suppress("NestedBlockDepth")
-    fun sendMessage(str: String, contactKey: String = "0${DataPacket.ID_BROADCAST}", replyId: Int? = null) {
+    fun sendMessage(str: String, contactKey: String = "0${DataPacket.ID_BROADCAST}", replyId: Int? = null, priority: Int = 0) {
         // contactKey: unique contact key filter (channel)+(nodeId)
         val channel = contactKey[0].digitToIntOrNull()
         val dest = if (channel != null) contactKey.substring(1) else contactKey
@@ -183,6 +183,7 @@ constructor(
         val p =
             DataPacket(dest, channel ?: 0, str, replyId).apply {
                 from = ourNodeInfo.value?.user?.id ?: DataPacket.ID_LOCAL
+                this.priority = priority
             }
         sendDataPacket(p)
     }

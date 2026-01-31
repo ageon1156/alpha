@@ -22,7 +22,7 @@ import org.meshtastic.core.database.model.Node
 /** Defines the various user interactions that can occur on the MessageScreen. */
 internal sealed interface MessageScreenEvent {
     /** Send a new text message. */
-    data class SendMessage(val text: String, val replyingToPacketId: Int? = null) : MessageScreenEvent
+    data class SendMessage(val text: String, val replyingToPacketId: Int? = null, val priority: Int = 0) : MessageScreenEvent
 
     /** Send an emoji reaction to a specific message. */
     data class SendReaction(val emoji: String, val messageId: Int) : MessageScreenEvent

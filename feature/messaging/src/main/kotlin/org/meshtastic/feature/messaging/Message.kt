@@ -57,11 +57,14 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.SelectAll
 import androidx.compose.material.icons.filled.SpeakerNotes
 import androidx.compose.material.icons.filled.SpeakerNotesOff
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -134,6 +137,7 @@ import org.meshtastic.core.ui.component.smartScrollToIndex
 import org.meshtastic.core.ui.theme.AppTheme
 import org.meshtastic.feature.messaging.component.RetryConfirmationDialog
 import org.meshtastic.proto.AppOnlyProtos
+import org.meshtastic.proto.MeshProtos.MeshPacket
 import java.nio.charset.StandardCharsets
 
 private const val MESSAGE_CHARACTER_LIMIT_BYTES = 200
@@ -177,6 +181,7 @@ fun MessageScreen(
     var sharedContact by rememberSaveable { mutableStateOf<Node?>(null) }
     val selectedMessageIds = rememberSaveable { mutableStateOf(emptySet<Long>()) }
     val messageInputState = rememberTextFieldState(message)
+    var selectedPriority by rememberSaveable { mutableStateOf(MeshPacket.Priority.DEFAULT_VALUE) }
     val showQuickChat by viewModel.showQuickChat.collectAsStateWithLifecycle()
 
     // Retry dialog state
@@ -272,7 +277,7 @@ fun MessageScreen(
             fun handle(event: MessageScreenEvent) {
                 when (event) {
                     is MessageScreenEvent.SendMessage -> {
-                        viewModel.sendMessage(event.text, contactKey, event.replyingToPacketId)
+                        viewModel.sendMessage(event.text, contactKey, event.replyingToPacketId, event.priority)
                         if (event.replyingToPacketId != null) replyingToPacketId = null
                         messageInputState.clearText()
                     }
@@ -446,13 +451,18 @@ fun MessageScreen(
                 onClearReply = { replyingToPacketId = null },
                 ourNode = ourNode,
             )
+            MessagePrioritySelector(
+                selectedPriority = selectedPriority,
+                onPrioritySelected = { selectedPriority = it },
+            )
             MessageInput(
                 isEnabled = connectionState.isConnected(),
                 textFieldState = messageInputState,
                 onSendMessage = {
                     val messageText = messageInputState.text.toString().trim()
                     if (messageText.isNotEmpty()) {
-                        onEvent(MessageScreenEvent.SendMessage(messageText, replyingToPacketId))
+                        onEvent(MessageScreenEvent.SendMessage(messageText, replyingToPacketId, selectedPriority))
+                        selectedPriority = MeshPacket.Priority.DEFAULT_VALUE // reset after send
                     }
                 },
             )
@@ -833,6 +843,71 @@ private fun QuickChatRow(
     LazyRow(modifier = modifier.padding(vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
         items(allActions, key = { it.uuid }) { action ->
             Button(onClick = { onClick(action) }, enabled = enabled) { Text(text = action.name) }
+        }
+    }
+}
+
+/**
+ * A row of filter chips allowing the user to select the message priority level.
+ * Defaults to no selection (UNSET → firmware treats as DEFAULT/64).
+ * Selecting "Critical Alert" shows a red warning chip to indicate reserved airtime usage.
+ */
+@Composable
+private fun MessagePrioritySelector(
+    selectedPriority: Int,
+    onPrioritySelected: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val options = remember {
+        listOf(
+            "Normal" to MeshPacket.Priority.DEFAULT_VALUE,
+            "High" to MeshPacket.Priority.HIGH_VALUE,
+            "Critical Alert" to MeshPacket.Priority.ALERT_VALUE,
+        )
+    }
+
+    // Only show the selector row when a non-default priority is active,
+    // or always show so the user can pick one.
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 2.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = "Priority:",
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        options.forEach { (label, value) ->
+            val isSelected = selectedPriority == value
+            val isCritical = value == MeshPacket.Priority.ALERT_VALUE
+            FilterChip(
+                selected = isSelected,
+                onClick = { onPrioritySelected(value) },
+                label = { Text(label, style = MaterialTheme.typography.labelSmall) },
+                leadingIcon = if (isCritical && isSelected) {
+                    {
+                        Icon(
+                            imageVector = Icons.Filled.Warning,
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp),
+                            tint = MaterialTheme.colorScheme.error,
+                        )
+                    }
+                } else {
+                    null
+                },
+                colors = if (isCritical) {
+                    FilterChipDefaults.filterChipColors(
+                        selectedContainerColor = MaterialTheme.colorScheme.errorContainer,
+                        selectedLabelColor = MaterialTheme.colorScheme.onErrorContainer,
+                    )
+                } else {
+                    FilterChipDefaults.filterChipColors()
+                },
+            )
         }
     }
 }

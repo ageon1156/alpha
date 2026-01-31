@@ -68,6 +68,7 @@ data class DataPacket(
     var retryCount: Int = 0, // Number of automatic retry attempts
     var emoji: Int = 0,
     var sfppHash: ByteArray? = null,
+    var priority: Int = 0, // MeshPacket.Priority value (0=UNSET, 64=DEFAULT, 100=HIGH, 110=ALERT)
 ) : Parcelable {
 
     /** If there was an error with this message, this string describes what was wrong. */
@@ -146,6 +147,7 @@ data class DataPacket(
         parcel.readInt(), // retryCount
         parcel.readInt(), // emoji
         parcel.createByteArray(), // sfppHash
+        parcel.readInt(), // priority
     )
 
     @Suppress("CyclomaticComplexMethod")
@@ -175,6 +177,7 @@ data class DataPacket(
         if (retryCount != other.retryCount) return false
         if (emoji != other.emoji) return false
         if (!sfppHash.contentEquals(other.sfppHash)) return false
+        if (priority != other.priority) return false
 
         return true
     }
@@ -200,6 +203,7 @@ data class DataPacket(
         result = 31 * result + retryCount
         result = 31 * result + emoji
         result = 31 * result + (sfppHash?.contentHashCode() ?: 0)
+        result = 31 * result + priority
         return result
     }
 
@@ -224,6 +228,7 @@ data class DataPacket(
         parcel.writeInt(retryCount)
         parcel.writeInt(emoji)
         parcel.writeByteArray(sfppHash)
+        parcel.writeInt(priority)
     }
 
     override fun describeContents(): Int = 0
@@ -252,6 +257,7 @@ data class DataPacket(
         retryCount = parcel.readInt()
         emoji = parcel.readInt()
         sfppHash = parcel.createByteArray()
+        priority = parcel.readInt()
     }
 
     companion object CREATOR : Parcelable.Creator<DataPacket> {
