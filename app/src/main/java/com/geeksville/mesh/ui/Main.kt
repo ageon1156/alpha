@@ -171,7 +171,6 @@ enum class TopLevelDestination(val label: StringResource, val icon: ImageVector,
     Conversations(Res.string.conversations, Icons.Outlined.ChatBubbleOutline, ContactsRoutes.ContactsGraph),
     Emergency(Res.string.emergency_help, Icons.Outlined.HealthAndSafety, EmergencyRoutes.EmergencyGraph),
     SOS(Res.string.sos, Icons.Outlined.Sos, SOSRoutes.SOSGraph),
-    Settings(Res.string.bottom_nav_settings, Icons.Outlined.Tune, SettingsRoutes.SettingsGraph()),
     Connections(Res.string.connections, Icons.Rounded.Wifi, ConnectionsRoutes.ConnectionsGraph),
     ;
 
@@ -610,7 +609,6 @@ fun MainScreen(uIViewModel: UIViewModel = hiltViewModel(), scanModel: BTScanMode
             mapGraph(navController)
             channelsGraph(navController)
             connectionsGraph(navController)
-            settingsGraph(navController)
             firmwareGraph(navController)
             emergencyGraph(navController)
             sosGraph(navController)
