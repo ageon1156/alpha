@@ -1,20 +1,3 @@
-/*
- * Copyright (c) 2025-2026 Meshtastic LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 package org.meshtastic.feature.emergency
 
 import androidx.compose.foundation.layout.Column
@@ -138,28 +121,23 @@ fun EmergencyTopicDetailScreen(
 private fun FirstAidDetail(viewModel: EmergencyViewModel, topicId: String) {
     val topic = viewModel.getFirstAidTopic(topicId) ?: return
 
-    // Recognition
     RecognitionSection(signs = topic.recognition)
     Spacer(modifier = Modifier.height(16.dp))
 
-    // Steps
     DetailSectionTitle(stringResource(Res.string.emergency_steps))
     topic.steps.forEach { step ->
         StepCard(step = step, modifier = Modifier.padding(vertical = 4.dp))
     }
     Spacer(modifier = Modifier.height(16.dp))
 
-    // DO / DO NOT
     DoDoNotSection(doList = topic.doList, doNotList = topic.doNotList)
     Spacer(modifier = Modifier.height(16.dp))
 
-    // Danger signs + escalation
     DangerWarningBanner(
         dangerSigns = topic.dangerSignsEscalate,
         escalationAction = topic.escalationAction,
     )
 
-    // Source
     if (topic.source.isNotBlank()) {
         Spacer(modifier = Modifier.height(16.dp))
         SourceText(topic.source)
@@ -170,7 +148,6 @@ private fun FirstAidDetail(viewModel: EmergencyViewModel, topicId: String) {
 private fun DisasterSurvivalDetail(viewModel: EmergencyViewModel, topicId: String) {
     val topic = viewModel.getDisasterSurvivalTopic(topicId) ?: return
 
-    // Hazard type
     Text(
         text = "${stringResource(Res.string.emergency_hazard_type)}: ${topic.hazardType}",
         color = Color(0xFF90CAF9),
@@ -179,7 +156,6 @@ private fun DisasterSurvivalDetail(viewModel: EmergencyViewModel, topicId: Strin
     )
     Spacer(modifier = Modifier.height(16.dp))
 
-    // Before
     if (topic.before.isNotEmpty()) {
         PhaseSection(
             title = stringResource(Res.string.emergency_before),
@@ -189,7 +165,6 @@ private fun DisasterSurvivalDetail(viewModel: EmergencyViewModel, topicId: Strin
         Spacer(modifier = Modifier.height(12.dp))
     }
 
-    // During
     if (topic.during.isNotEmpty()) {
         PhaseSection(
             title = stringResource(Res.string.emergency_during),
@@ -199,7 +174,6 @@ private fun DisasterSurvivalDetail(viewModel: EmergencyViewModel, topicId: Strin
         Spacer(modifier = Modifier.height(12.dp))
     }
 
-    // After
     if (topic.after.isNotEmpty()) {
         PhaseSection(
             title = stringResource(Res.string.emergency_after),
@@ -209,10 +183,8 @@ private fun DisasterSurvivalDetail(viewModel: EmergencyViewModel, topicId: Strin
         Spacer(modifier = Modifier.height(16.dp))
     }
 
-    // DO / DO NOT
     DoDoNotSection(doList = topic.doList, doNotList = topic.doNotList)
 
-    // Source
     if (topic.source.isNotBlank()) {
         Spacer(modifier = Modifier.height(16.dp))
         SourceText(topic.source)
@@ -223,7 +195,6 @@ private fun DisasterSurvivalDetail(viewModel: EmergencyViewModel, topicId: Strin
 private fun BasicSurvivalDetail(viewModel: EmergencyViewModel, topicId: String) {
     val topic = viewModel.getBasicSurvivalTopic(topicId) ?: return
 
-    // Purpose
     if (topic.purpose.isNotBlank()) {
         Text(
             text = "${stringResource(Res.string.emergency_purpose)}: ${topic.purpose}",
@@ -233,7 +204,6 @@ private fun BasicSurvivalDetail(viewModel: EmergencyViewModel, topicId: String) 
         Spacer(modifier = Modifier.height(16.dp))
     }
 
-    // Steps
     if (topic.steps.isNotEmpty()) {
         DetailSectionTitle(stringResource(Res.string.emergency_steps))
         topic.steps.forEach { step ->
@@ -242,10 +212,8 @@ private fun BasicSurvivalDetail(viewModel: EmergencyViewModel, topicId: String) 
         Spacer(modifier = Modifier.height(16.dp))
     }
 
-    // DO / DO NOT
     DoDoNotSection(doList = topic.doList, doNotList = topic.doNotList)
 
-    // Source
     if (topic.source.isNotBlank()) {
         Spacer(modifier = Modifier.height(16.dp))
         SourceText(topic.source)
@@ -297,4 +265,3 @@ private fun formatTopicTitle(topicId: String): String =
         .joinToString(" ") { word ->
             word.replaceFirstChar { it.uppercase() }
         }
-

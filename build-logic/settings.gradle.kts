@@ -1,7 +1,3 @@
-/*
- * Licensed under GPL-3.0
- */
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -33,4 +29,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "build-logic"
 include(":convention")
-

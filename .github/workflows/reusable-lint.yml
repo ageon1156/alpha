@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest  # Lint is fast, doesn't need large runner
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Checkout code
@@ -35,4 +35,3 @@ jobs:
 
       - name: Run Spotless and Detekt
         run: ./gradlew spotlessCheck detekt --scan
-

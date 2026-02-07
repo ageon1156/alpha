@@ -1,6 +1,3 @@
-/*
- * Licensed under GPL-3.0
- */
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
@@ -29,4 +26,3 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.kermit)
 }
-

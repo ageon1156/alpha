@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2025-2026 Meshtastic LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 @file:Suppress("MatchingDeclarationName")
 
 package com.geeksville.mesh.ui
@@ -256,7 +240,7 @@ fun MainScreen(uIViewModel: UIViewModel = hiltViewModel(), scanModel: BTScanMode
                             modifier =
                             if (navSuiteType == NavigationSuiteType.ShortNavigationBarCompact) {
                                 Modifier.width(1.dp)
-                                    .height(1.dp) // hide on phone - min 1x1 or talkback won't see it.
+                                    .height(1.dp)
                             } else {
                                 Modifier
                             },
@@ -304,18 +288,17 @@ private fun VersionChecks(viewModel: UIViewModel) {
                 Logger.d { "FirmwareEdition: ${edition.name}" }
                 when (edition) {
                     MeshProtos.FirmwareEdition.VANILLA -> {
-                        // Handle any specific logic for VANILLA firmware edition if needed
+
                     }
 
                     else -> {
-                        // Handle other firmware editions if needed
+
                     }
                 }
             }
         }
     }
 
-    // Check if the device is running an old app version or firmware version
     LaunchedEffect(connectionState, myNodeInfo) {
         if (connectionState == ConnectionState.Connected) {
             Logger.i {
@@ -387,4 +370,3 @@ private fun VersionChecks(viewModel: UIViewModel) {
         }
     }
 }
-

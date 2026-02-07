@@ -1,6 +1,3 @@
-/*
- * Licensed under GPL-3.0
- */
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
@@ -34,4 +31,3 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
 }
-

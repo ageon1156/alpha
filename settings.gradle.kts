@@ -1,7 +1,3 @@
-/*
- * Licensed under GPL-3.0
- */
-
 include(
     ":app",
     ":core:analytics",
@@ -26,7 +22,6 @@ include(
 )
 rootProject.name = "MeshtasticAndroid"
 
-// https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -66,16 +61,7 @@ develocity {
         local {
             isEnabled = true
         }
-//        remote(HttpBuildCache::class.java) {
-//            isAllowInsecureProtocol = true
-//            // Replace with your selfhosted instance address
-//            // see: https://docs.gradle.org/current/userguide/build_cache.html#sec:build_cache_setup_http_backend
-//            url = uri("http://<your-build-cache-ip-here>:5071/cache/")
-//
-//            // Allow this machine to upload results to the cache
-//            isPush = true
-//
-//        }
+
     }
 }
 

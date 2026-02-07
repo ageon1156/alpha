@@ -11,10 +11,10 @@ body:
       description: |
         Please make sure you have done the following before submitting your feature request.
         Requests that do not meet these criteria will be closed.
-        Links:  
+        Links:
           [**OPEN ISSUES**](https://github.com/atlas/Atlas/issues)
           [**CLOSED ISSUES**](https://github.com/atlas/Atlas/issues?q=is%3Aissue+is%3Aclosed)
-          [Contribution Guidelines](https://github.com/atlas/Atlas/blob/main/README.md#contributing)
+          [Contribution Guidelines](https://github.com/atlas/Atlas/blob/main/README.md
       options:
         - label:
             I have used the search function for **OPEN ISSUES** to see if someone else has already submitted the same feature request.

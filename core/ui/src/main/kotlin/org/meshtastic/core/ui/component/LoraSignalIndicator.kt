@@ -1,20 +1,3 @@
-/*
- * Copyright (c) 2025 Meshtastic LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 @file:Suppress("MagicNumber")
 
 package org.meshtastic.core.ui.component
@@ -78,10 +61,6 @@ enum class Quality(
     GOOD(Res.string.good, Icons.Default.SignalCellular4Bar, { colorScheme.StatusGreen }),
 }
 
-/**
- * Displays the `snr` and `rssi` color coded based on the signal quality, along with a human readable description and
- * related icon.
- */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun NodeSignalQuality(snr: Float, rssi: Int, modifier: Modifier = Modifier) {
@@ -107,7 +86,6 @@ fun NodeSignalQuality(snr: Float, rssi: Int, modifier: Modifier = Modifier) {
     }
 }
 
-/** Displays the `snr` and `rssi` with color depending on the values respectively. */
 @Composable
 fun SnrAndRssi(snr: Float, rssi: Int) {
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
@@ -116,7 +94,6 @@ fun SnrAndRssi(snr: Float, rssi: Int) {
     }
 }
 
-/** Displays a human readable description and icon representing the signal quality. */
 @Composable
 fun LoraSignalIndicator(snr: Float, rssi: Int, contentColor: Color = MaterialTheme.colorScheme.onSurface) {
     val quality = determineSignalQuality(snr, rssi)
@@ -181,4 +158,3 @@ fun determineSignalQuality(snr: Float, rssi: Int): Quality = when {
     snr <= SNR_FAIR_THRESHOLD && rssi <= RSSI_FAIR_THRESHOLD -> Quality.NONE
     else -> Quality.BAD
 }
-

@@ -1,11 +1,4 @@
-/*
- * Licensed under GPL-3.0
- */
 import com.android.build.api.dsl.LibraryExtension
-
-/*
- * Licensed under GPL-3.0
- */
 
 plugins {
     alias(libs.plugins.meshtastic.android.library)
@@ -37,4 +30,3 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.ext.junit)
 }
-
