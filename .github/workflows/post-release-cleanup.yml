@@ -58,7 +58,6 @@ jobs:
           TAG_PREFIX="v${BASE_VERSION}-"
           echo "Searching for any remaining remote pre-release tags with prefix '$TAG_PREFIX'."
 
-          # This finds all remote tags matching the pattern. Some may have been deleted in the previous step.
           TAGS_TO_DELETE=$(git ls-remote --tags origin "refs/tags/${TAG_PREFIX}*" | awk '{print $2}' | sed 's|refs/tags/||')
 
           if [ -z "$TAGS_TO_DELETE" ]; then
@@ -67,13 +66,10 @@ jobs:
             if [[ "${{ github.event.inputs.confirm_deletion }}" == "true" ]]; then
               echo "!!! DELETING DANGLING TAGS !!!"
               echo "The following pre-release tags will be deleted:"
-              # We pipe to xargs which will run the command for each tag.
-              # If a tag was already deleted by the previous 'release delete' step, this will fail for that tag.
-              # We add '|| true' to ignore any errors and ensure the workflow doesn't fail.
+
               echo "$TAGS_TO_DELETE" | xargs -n 1 -I {} sh -c 'git push --delete origin {} || true'
             else
               echo "DRY RUN: The following dangling pre-release tags would be deleted:"
               echo "$TAGS_TO_DELETE"
             fi
           fi
-

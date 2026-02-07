@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2025-2026 Meshtastic LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 package org.meshtastic.core.database.dao
 
 import androidx.paging.PagingSource
@@ -206,7 +190,7 @@ interface PacketDao {
 
     @Query(
         """
-        DELETE FROM reactions 
+        DELETE FROM reactions
         WHERE (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
         AND reply_id IN (:packetIds)
         """,
@@ -227,7 +211,7 @@ interface PacketDao {
     @Transaction
     suspend fun updateMessageStatus(data: DataPacket, m: MessageStatus) {
         val new = data.copy(status = m)
-        // Find by packet ID first for better performance and reliability
+
         findPacketsWithId(data.id).find { it.data == data }?.let { update(it.copy(data = new)) }
             ?: findDataPacket(data)?.let { update(it.copy(data = new)) }
     }
@@ -235,7 +219,7 @@ interface PacketDao {
     @Transaction
     suspend fun updateMessageId(data: DataPacket, id: Int) {
         val new = data.copy(id = id)
-        // Find by packet ID first for better performance and reliability
+
         findPacketsWithId(data.id).find { it.data == data }?.let { update(it.copy(data = new, packetId = id)) }
             ?: findDataPacket(data)?.let { update(it.copy(data = new, packetId = id)) }
     }
@@ -263,8 +247,8 @@ interface PacketDao {
     @Transaction
     @Query(
         """
-        SELECT * FROM packet 
-        WHERE packet_id = :packetId 
+        SELECT * FROM packet
+        WHERE packet_id = :packetId
         AND (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
         LIMIT 1
         """,
@@ -293,7 +277,7 @@ interface PacketDao {
     @Transaction
     @Query(
         """
-        SELECT * FROM packet 
+        SELECT * FROM packet
         WHERE (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
         AND substr(sfpp_hash, 1, 8) = substr(:hash, 1, 8)
         """,
@@ -337,11 +321,11 @@ interface PacketDao {
     suspend fun setMuteUntil(contacts: List<String>, until: Long) {
         val contactList =
             contacts.map { contact ->
-                // Always mute
+
                 val absoluteMuteUntil =
                     if (until == Long.MAX_VALUE) {
                         Long.MAX_VALUE
-                    } else if (until == 0L) { // unmute
+                    } else if (until == 0L) {
                         0L
                     } else {
                         System.currentTimeMillis() + until
@@ -359,7 +343,7 @@ interface PacketDao {
 
     @Query(
         """
-        SELECT * FROM reactions 
+        SELECT * FROM reactions
         WHERE packet_id = :packetId
         AND (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
         """,
@@ -368,8 +352,8 @@ interface PacketDao {
 
     @Query(
         """
-        SELECT * FROM reactions 
-        WHERE packet_id = :packetId 
+        SELECT * FROM reactions
+        WHERE packet_id = :packetId
         AND (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
         LIMIT 1
         """,
@@ -379,7 +363,7 @@ interface PacketDao {
     @Transaction
     @Query(
         """
-        SELECT * FROM reactions 
+        SELECT * FROM reactions
         WHERE (myNodeNum = 0 OR myNodeNum = (SELECT myNodeNum FROM my_node))
         AND substr(sfpp_hash, 1, 8) = substr(:hash, 1, 8)
         """,
@@ -402,11 +386,6 @@ interface PacketDao {
     @Query("DELETE FROM contact_settings")
     suspend fun deleteAllContactSettings()
 
-    /**
-     * One-time migration: Remap all message DataPacket.channel indices to new mapping using PSK after a channel
-     * reorder. For each Packet (with port_num = 1), finds the old PSK then sets the channel index to the matching
-     * newSettings index. Skips if PSKs do not match or are missing.
-     */
     @Transaction
     suspend fun migrateChannelsByPSK(oldSettings: List<ChannelSettings>, newSettings: List<ChannelSettings>) {
         val pskToNewIndex = newSettings.mapIndexed { idx, ch -> ch.psk to idx }.toMap()
@@ -416,7 +395,7 @@ interface PacketDao {
             val oldPSK = oldSettings.getOrNull(oldIndex)?.psk
             val newIndex = if (oldPSK != null) pskToNewIndex[oldPSK] else null
             if (oldPSK != null && newIndex != null && oldIndex != newIndex) {
-                // Rebuild contact_key with the new index, keeping the rest unchanged
+
                 val oldKeySuffix = packet.contact_key.dropWhile { it.isDigit() }
                 val newContactKey = "$newIndex$oldKeySuffix"
                 update(packet.copy(contact_key = newContactKey, data = packet.data.copy(channel = newIndex)))
@@ -427,4 +406,3 @@ interface PacketDao {
     @Query("SELECT * FROM packet WHERE port_num = 1")
     suspend fun getAllUserPacketsForMigration(): List<Packet>
 }
-

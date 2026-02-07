@@ -1,7 +1,3 @@
-/*
- * Licensed under GPL-3.0
- */
-
 plugins {
     alias(libs.plugins.meshtastic.kmp.library)
     id("meshtastic.kmp.library.compose")
@@ -16,4 +12,3 @@ compose.resources {
     publicResClass = true
     packageOfResClass = "org.meshtastic.core.strings"
 }
-

@@ -31,7 +31,7 @@ body:
         Links:
           [**OPEN ISSUES**](https://github.com/atlas/Atlas/issues)
           [**CLOSED ISSUES**](https://github.com/atlas/Atlas/issues?q=is%3Aissue+is%3Aclosed)
-          [Contribution Guidelines](https://github.com/atlas/Atlas/blob/main/README.md#contributing)
+          [Contribution Guidelines](https://github.com/atlas/Atlas/blob/main/README.md
       options:
         - label: |
             I am able to reproduce the bug with the latest version.

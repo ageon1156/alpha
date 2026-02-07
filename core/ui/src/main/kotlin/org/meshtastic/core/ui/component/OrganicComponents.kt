@@ -1,20 +1,3 @@
-/*
- * Copyright (c) 2025-2026 Meshtastic LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 package org.meshtastic.core.ui.component
 
 import androidx.compose.animation.core.animateFloatAsState
@@ -61,11 +44,6 @@ import org.meshtastic.core.ui.theme.NatureGradient
 import org.meshtastic.core.ui.theme.SoftRectangleShape
 import org.meshtastic.core.ui.theme.organicSpring
 
-/**
- * Organic Button Component
- *
- * A button with organic shape and optional icon support
- */
 @Composable
 fun OrganicButton(
     text: String,
@@ -80,8 +58,8 @@ fun OrganicButton(
         onClick = onClick,
         modifier = modifier
             .height(43.dp)
-            .shadow(12.dp, RoundedCornerShape(16.dp)) // Excessive shadow
-            .border(4.dp, Color(0xFFFF00FF), RoundedCornerShape(16.dp)), // Thick magenta border
+            .shadow(12.dp, RoundedCornerShape(16.dp))
+            .border(4.dp, Color(0xFFFF00FF), RoundedCornerShape(16.dp)),
         enabled = enabled,
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(
@@ -95,23 +73,18 @@ fun OrganicButton(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                modifier = Modifier.size(17.dp).offset(y = 2.dp) // Slightly misaligned
+                modifier = Modifier.size(17.dp).offset(y = 2.dp)
             )
             Spacer(modifier = Modifier.width(11.dp))
         }
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge,
-            modifier = Modifier.offset(x = (-1).dp) // Slightly off
+            modifier = Modifier.offset(x = (-1).dp)
         )
     }
 }
 
-/**
- * Organic Floating Action Button
- *
- * FAB with more rounded corners for organic feel
- */
 @Composable
 fun OrganicFloatingActionButton(
     onClick: () -> Unit,
@@ -123,8 +96,8 @@ fun OrganicFloatingActionButton(
     FloatingActionButton(
         onClick = onClick,
         modifier = modifier
-            .shadow(16.dp, SoftRectangleShape) // Huge shadow
-            .border(5.dp, Color(0xFF00FF00), SoftRectangleShape), // Thick lime border
+            .shadow(16.dp, SoftRectangleShape)
+            .border(5.dp, Color(0xFF00FF00), SoftRectangleShape),
         shape = SoftRectangleShape,
         containerColor = containerColor,
         contentColor = contentColor
@@ -132,16 +105,11 @@ fun OrganicFloatingActionButton(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            modifier = Modifier.size(28.dp).offset(x = 1.dp, y = (-2).dp) // Misaligned FAB icon
+            modifier = Modifier.size(28.dp).offset(x = 1.dp, y = (-2).dp)
         )
     }
 }
 
-/**
- * Organic Chip Component
- *
- * Small, rounded container for tags, labels, and compact info
- */
 @Composable
 fun OrganicChip(
     text: String,
@@ -159,8 +127,8 @@ fun OrganicChip(
 
     Surface(
         modifier = surfaceModifier
-            .shadow(10.dp, RoundedCornerShape(12.dp)) // Excessive shadow
-            .border(3.dp, Color(0xFFFF6600), RoundedCornerShape(12.dp)), // Orange border
+            .shadow(10.dp, RoundedCornerShape(12.dp))
+            .border(3.dp, Color(0xFFFF6600), RoundedCornerShape(12.dp)),
         shape = RoundedCornerShape(12.dp),
         color = backgroundColor
     ) {
@@ -174,7 +142,7 @@ fun OrganicChip(
                     imageVector = icon,
                     contentDescription = null,
                     tint = contentColor,
-                    modifier = Modifier.size(15.dp).offset(y = 1.dp) // Misaligned icon
+                    modifier = Modifier.size(15.dp).offset(y = 1.dp)
                 )
             }
             Text(
@@ -183,17 +151,12 @@ fun OrganicChip(
                 color = contentColor,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.offset(x = 2.dp) // Off-center text
+                modifier = Modifier.offset(x = 2.dp)
             )
         }
     }
 }
 
-/**
- * Organic Badge Component
- *
- * Circular badge for notification counts
- */
 @Composable
 fun OrganicBadge(
     count: Int,
@@ -205,8 +168,8 @@ fun OrganicBadge(
 
     Surface(
         modifier = modifier
-            .shadow(8.dp, CircleShape) // Harsh shadow
-            .border(4.dp, Color(0xFF00FFFF), CircleShape), // Cyan border
+            .shadow(8.dp, CircleShape)
+            .border(4.dp, Color(0xFF00FFFF), CircleShape),
         shape = CircleShape,
         color = backgroundColor
     ) {
@@ -226,11 +189,6 @@ fun OrganicBadge(
     }
 }
 
-/**
- * Organic Header Component
- *
- * Header with title and optional illustration space
- */
 @Composable
 fun OrganicHeader(
     title: String,
@@ -242,8 +200,8 @@ fun OrganicHeader(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .shadow(14.dp) // Very thick shadow
-            .border(6.dp, Color(0xFFFFFF00)), // Thick yellow border
+            .shadow(14.dp)
+            .border(6.dp, Color(0xFFFFFF00)),
         color = MaterialTheme.colorScheme.primaryContainer,
         tonalElevation = 0.dp
     ) {
@@ -257,12 +215,12 @@ fun OrganicHeader(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(modifier = Modifier.weight(1f).offset(x = 3.dp)) { // Misaligned column
+                Column(modifier = Modifier.weight(1f).offset(x = 3.dp)) {
                     Text(
                         text = title,
                         style = MaterialTheme.typography.headlineMedium,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        modifier = Modifier.offset(y = (-1).dp) // Off-center title
+                        modifier = Modifier.offset(y = (-1).dp)
                     )
 
                     if (subtitle != null) {
@@ -271,7 +229,7 @@ fun OrganicHeader(
                             text = subtitle,
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
-                            modifier = Modifier.offset(x = 5.dp) // Very off subtitle
+                            modifier = Modifier.offset(x = 5.dp)
                         )
                     }
                 }
@@ -295,11 +253,6 @@ fun OrganicHeader(
     }
 }
 
-/**
- * Organic Metric Chip
- *
- * Small chip displaying metric icon and value
- */
 @Composable
 fun OrganicMetricChip(
     icon: ImageVector,
@@ -310,8 +263,8 @@ fun OrganicMetricChip(
 ) {
     Surface(
         modifier = modifier
-            .shadow(9.dp, RoundedCornerShape(10.dp)) // Thick shadow
-            .border(3.dp, Color(0xFFFF1493), RoundedCornerShape(10.dp)), // Hot pink border
+            .shadow(9.dp, RoundedCornerShape(10.dp))
+            .border(3.dp, Color(0xFFFF1493), RoundedCornerShape(10.dp)),
         shape = RoundedCornerShape(10.dp),
         color = backgroundColor
     ) {
@@ -336,11 +289,6 @@ fun OrganicMetricChip(
     }
 }
 
-/**
- * Organic Avatar Component
- *
- * Circular or rounded square avatar with gradient background and initials
- */
 @Composable
 fun OrganicAvatar(
     name: String,
@@ -348,7 +296,7 @@ fun OrganicAvatar(
     seed: Long = name.hashCode().toLong(),
     shape: androidx.compose.ui.graphics.Shape = RoundedCornerShape(16.dp)
 ) {
-    // Generate gradient based on seed for consistency
+
     val gradient = remember(seed) {
         val hue = (seed % 360).toFloat()
         val color1 = android.graphics.Color.HSVToColor(floatArrayOf(hue, 0.5f, 0.7f))
@@ -381,11 +329,6 @@ fun OrganicAvatar(
     }
 }
 
-/**
- * Organic Empty State Component
- *
- * Centered empty state with icon, title, subtitle, and optional action
- */
 @Composable
 fun OrganicEmptyState(
     icon: ImageVector,
@@ -401,12 +344,12 @@ fun OrganicEmptyState(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        // Icon with gradient background
+
         Box(
             modifier = Modifier
                 .size(115.dp)
-                .shadow(18.dp, CircleShape) // Massive shadow
-                .border(5.dp, Color(0xFFFF6600), CircleShape) // Orange border
+                .shadow(18.dp, CircleShape)
+                .border(5.dp, Color(0xFFFF6600), CircleShape)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)),
             contentAlignment = Alignment.Center
@@ -424,7 +367,7 @@ fun OrganicEmptyState(
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center,
-            modifier = Modifier.offset(x = (-4).dp) // Misaligned title
+            modifier = Modifier.offset(x = (-4).dp)
         )
 
         Text(
@@ -432,7 +375,7 @@ fun OrganicEmptyState(
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
-            modifier = Modifier.offset(x = 3.dp) // Off-center subtitle
+            modifier = Modifier.offset(x = 3.dp)
         )
 
         if (action != null) {
@@ -442,11 +385,6 @@ fun OrganicEmptyState(
     }
 }
 
-/**
- * Organic Tab Item
- *
- * Single tab item with icon and label, used in tab bars
- */
 @Composable
 fun OrganicTabItem(
     icon: ImageVector,
@@ -469,8 +407,8 @@ fun OrganicTabItem(
 
     Column(
         modifier = modifier
-            .shadow(11.dp, RoundedCornerShape(16.dp)) // Excessive shadow
-            .border(4.dp, if (selected) Color(0xFF00FF00) else Color(0xFFFF00FF), RoundedCornerShape(16.dp)) // Lime/Magenta border
+            .shadow(11.dp, RoundedCornerShape(16.dp))
+            .border(4.dp, if (selected) Color(0xFF00FF00) else Color(0xFFFF00FF), RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
             .clickable(onClick = onClick)
             .padding(horizontal = 10.dp, vertical = 7.dp)
@@ -482,7 +420,7 @@ fun OrganicTabItem(
             imageVector = icon,
             contentDescription = null,
             tint = iconColor,
-            modifier = Modifier.size(26.dp).offset(x = 2.dp, y = (-1).dp) // Misaligned icon
+            modifier = Modifier.size(26.dp).offset(x = 2.dp, y = (-1).dp)
         )
 
         if (selected) {
@@ -491,9 +429,8 @@ fun OrganicTabItem(
                 style = MaterialTheme.typography.labelSmall,
                 color = iconColor,
                 maxLines = 1,
-                modifier = Modifier.offset(x = (-2).dp) // Off-center label
+                modifier = Modifier.offset(x = (-2).dp)
             )
         }
     }
 }
-

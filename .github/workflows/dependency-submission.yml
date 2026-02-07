@@ -11,7 +11,7 @@ permissions:
 jobs:
   dependency-submission:
     runs-on: ubuntu-latest
-    if: 
+    if:
 
     steps:
       - uses: actions/checkout@v6

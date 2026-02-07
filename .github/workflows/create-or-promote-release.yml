@@ -48,13 +48,13 @@ jobs:
           CHANNEL="${{ inputs.channel }}"
 
           if [[ "$CHANNEL" == "internal" ]]; then
-            # This is a new build, create a new internal tag
+
             LATEST_TAG=$(git tag --list "v${BASE_VERSION}-internal.*" --sort=-v:refname | head -n 1)
 
             if [ -z "$LATEST_TAG" ]; then
               INCREMENT=1
             else
-              INCREMENT=$(echo "$LATEST_TAG" | sed -n "s/.*-internal\.\([0-9]*\)/\1/p" | awk '{print $1+1}')
+              INCREMENT=$(echo "$LATEST_TAG" | sed -n "s/.*-internal\..\(([0-9]*\))/\11/p" | awk '{print $1+1}')
             fi
 
             NEW_TAG="v${BASE_VERSION}-internal.${INCREMENT}"
@@ -63,7 +63,7 @@ jobs:
             echo "release_name=$NEW_TAG" >> $GITHUB_OUTPUT
             echo "final_tag=$NEW_TAG" >> $GITHUB_OUTPUT
           else
-            # This is a promotion, find the latest tag from the previous channel to promote
+
             FROM_CHANNEL="internal"
             if [[ "$CHANNEL" == "open" ]]; then
               FROM_CHANNEL="closed"
@@ -80,19 +80,18 @@ jobs:
 
             echo "Found latest ${FROM_CHANNEL} tag to promote: $LATEST_TAG_TO_PROMOTE"
 
-            # Calculate the increment for the TARGET channel
             if [[ "$CHANNEL" != "production" ]]; then
                 LATEST_CHANNEL_TAG=$(git tag --list "v${BASE_VERSION}-${CHANNEL}.*" --sort=-v:refname | head -n 1)
 
                 if [ -z "$LATEST_CHANNEL_TAG" ]; then
                   INCREMENT=1
                 else
-                  INCREMENT=$(echo "$LATEST_CHANNEL_TAG" | sed -n "s/.*-${CHANNEL}\.\([0-9]*\)/\1/p" | awk '{print $1+1}')
+                  INCREMENT=$(echo "$LATEST_CHANNEL_TAG" | sed -n "s/.*-${CHANNEL}\..\(([0-9]*\))/\11/p" | awk '{print $1+1}')
                 fi
                 
                 NEW_TAG="v${BASE_VERSION}-${CHANNEL}.${INCREMENT}"
             else
-                # Production is special, it has no increment
+
                 NEW_TAG="v${BASE_VERSION}"
             fi
 
@@ -112,10 +111,10 @@ jobs:
         run: |
           FINAL_TAG="${{ steps.calculate_tags.outputs.final_tag }}"
           if [[ "${{ inputs.channel }}" == "internal" ]]; then
-            # For internal, tag the current HEAD. tag_to_process and final_tag are the same.
+
             git tag $FINAL_TAG
           else
-            # For promotions, create the new tag pointing to the same commit as the old tag.
+
             TAG_TO_PROCESS="${{ steps.calculate_tags.outputs.tag_to_process }}"
             git tag $FINAL_TAG $TAG_TO_PROCESS
           fi
@@ -144,4 +143,3 @@ jobs:
       base_version: ${{ inputs.base_version }}
       from_channel: ${{ needs.determine-tags.outputs.from_channel }}
     secrets: inherit
-

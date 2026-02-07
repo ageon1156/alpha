@@ -52,13 +52,12 @@ jobs:
     if: ${{ !cancelled() && !failure() }}
     uses: ./.github/workflows/reusable-android-test.yml
     with:
-      api_levels: '[35]' # Run only on API 35 for PRs
-      test_flavors: 'google' # Run only Google flavor for PRs (faster)
+      api_levels: '[35]'
+      test_flavors: 'google'
     secrets:
       GRADLE_ENCRYPTION_KEY: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  # This job handles the case when no code changes are detected (docs-only PRs)
   skip-notice:
     needs: check-changes
     if: needs.check-changes.outputs.code_changed != 'true'
@@ -79,13 +78,12 @@ jobs:
     steps:
       - name: Check Workflow Status
         run: |
-          # If no code changed, all jobs are expected to be skipped - that's success
+
           if [[ "${{ needs.check-changes.outputs.code_changed }}" != "true" ]]; then
             echo "No code changes - CI jobs skipped as expected"
             exit 0
           fi
 
-          # Code changed - check that all jobs succeeded
           check_result() {
             local job_name=$1
             local result=$2
@@ -103,4 +101,3 @@ jobs:
           check_result "androidTest" "${{ needs.androidTest.result }}"
 
           echo "All jobs passed successfully"
-
