@@ -120,7 +120,6 @@ configure<ApplicationExtension> {
     // Configure existing product flavors (defined by convention plugin)
     // with their dynamic version names.
     productFlavors {
-        named("google") { versionName = "${defaultConfig.versionName} (${defaultConfig.versionCode}) google" }
         named("fdroid") { versionName = "${defaultConfig.versionName} (${defaultConfig.versionCode}) fdroid" }
     }
 
@@ -149,20 +148,6 @@ androidComponents {
         if (variant.name == "fdroidDebug") {
             variant.applicationId = "com.geeksville.mesh.fdroid.debug"
         }
-
-        if (variant.name == "googleDebug") {
-            variant.applicationId = "com.geeksville.mesh.google.debug"
-        }
-    }
-    onVariants(selector().withBuildType("release")) { variant ->
-        if (variant.flavorName == "google") {
-            val variantNameCapped = variant.name.replaceFirstChar { it.uppercase() }
-            val minifyTaskName = "minify${variantNameCapped}WithR8"
-            val uploadTaskName = "uploadMapping$variantNameCapped"
-            if (project.tasks.findByName(uploadTaskName) != null && project.tasks.findByName(minifyTaskName) != null) {
-                tasks.named(minifyTaskName).configure { finalizedBy(uploadTaskName) }
-            }
-        }
     }
 }
 
@@ -183,12 +168,8 @@ dependencies {
     implementation(projects.core.service)
     implementation(projects.core.strings)
     implementation(projects.core.ui)
-    implementation(projects.feature.intro)
     implementation(projects.feature.messaging)
     implementation(projects.feature.map)
-    implementation(projects.feature.node)
-    implementation(projects.feature.settings)
-    implementation(projects.feature.firmware)
     implementation(projects.feature.emergency)
     implementation(projects.feature.sos)
 
@@ -226,11 +207,8 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    googleImplementation(libs.location.services)
-    googleImplementation(libs.play.services.maps)
-
-    fdroidImplementation(libs.osmdroid.android)
-    fdroidImplementation(libs.osmdroid.geopackage) { exclude(group = "com.j256.ormlite") }
+    implementation(libs.osmdroid.android)
+    implementation(libs.osmdroid.geopackage) { exclude(group = "com.j256.ormlite") }
 
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.hilt.android.testing)

@@ -24,18 +24,6 @@ interface Route
 
 interface Graph : Route
 
-object ChannelsRoutes {
-    @Serializable data object ChannelsGraph : Graph
-
-    @Serializable data object Channels : Route
-}
-
-object ConnectionsRoutes {
-    @Serializable data object ConnectionsGraph : Graph
-
-    @Serializable data object Connections : Route
-}
-
 object ContactsRoutes {
     @Serializable data object ContactsGraph : Graph
 
@@ -50,94 +38,6 @@ object ContactsRoutes {
 
 object MapRoutes {
     @Serializable data class Map(val waypointId: Int? = null) : Route
-}
-
-object NodesRoutes {
-    @Serializable data object NodesGraph : Graph
-
-    @Serializable data object Nodes : Route
-
-    @Serializable data class NodeDetailGraph(val destNum: Int? = null) : Graph
-
-    @Serializable data class NodeDetail(val destNum: Int? = null) : Route
-}
-
-object NodeDetailRoutes {
-    @Serializable data class DeviceMetrics(val destNum: Int) : Route
-
-    @Serializable data class NodeMap(val destNum: Int) : Route
-
-    @Serializable data class PositionLog(val destNum: Int) : Route
-
-    @Serializable data class EnvironmentMetrics(val destNum: Int) : Route
-
-    @Serializable data class SignalMetrics(val destNum: Int) : Route
-
-    @Serializable data class PowerMetrics(val destNum: Int) : Route
-
-    @Serializable data class TracerouteLog(val destNum: Int) : Route
-
-    @Serializable data class TracerouteMap(val destNum: Int, val requestId: Int, val logUuid: String? = null) : Route
-
-    @Serializable data class HostMetricsLog(val destNum: Int) : Route
-
-    @Serializable data class PaxMetrics(val destNum: Int) : Route
-}
-
-object SettingsRoutes {
-    @Serializable data class SettingsGraph(val destNum: Int? = null) : Graph
-
-    @Serializable data class Settings(val destNum: Int? = null) : Route
-
-    // region radio Config Routes
-
-    @Serializable data object User : Route
-
-    @Serializable data object ChannelConfig : Route
-
-    @Serializable data object Device : Route
-
-    @Serializable data object Position : Route
-
-    @Serializable data object Power : Route
-
-    @Serializable data object Network : Route
-
-    @Serializable data object Display : Route
-
-    @Serializable data object LoRa : Route
-
-    @Serializable data object Bluetooth : Route
-
-    @Serializable data object Security : Route
-
-    // endregion
-
-    // region module config routes
-
-    @Serializable data object Serial : Route
-
-    @Serializable data object ExtNotification : Route
-
-    @Serializable data object StoreForward : Route
-
-    @Serializable data object CannedMessage : Route
-
-    // endregion
-
-    // region advanced config routes
-
-    @Serializable data object CleanNodeDb : Route
-
-    @Serializable data object About : Route
-
-    // endregion
-}
-
-object FirmwareRoutes {
-    @Serializable data object FirmwareGraph : Graph
-
-    @Serializable data object FirmwareUpdate : Route
 }
 
 object EmergencyRoutes {
